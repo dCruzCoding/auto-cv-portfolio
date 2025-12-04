@@ -24,30 +24,24 @@ jobs:
         with:
           python-version: '3.10'
 
-      # 3. Instalar librerías (Jinja2 y PyYAML)
+      # 3. Instalar librerías
       - name: Instalar dependencias
         run: |
           pip install -r requirements.txt
 
-            # --- NUEVO PASO DE SEGURIDAD ---
+      # 4. RESTAURAR DATOS PRIVADOS (Crea carpeta y archivo)
       - name: Restaurar datos privados
         env:
           YAML_CONTENT: ${{ secrets.DATA_YAML }}
         run: |
-          # Escribimos el contenido del secreto en el archivo que espera el script
           mkdir -p data
           echo "$YAML_CONTENT" > data/info.yaml
-      # -------------------------------
 
+      # 5. EJECUTAR TU SCRIPT (Genera .tex y .html en output)
       - name: Generar archivos con Python
-        run: python script.py
+        run: python script.p6
 
-      # 4. EJECUTAR TU SCRIPT (Genera .tex y .html en la carpeta output)
-      - name: Generar archivos con Python
-        run: python script.py
-
-      # 5. COMPILAR LATEX A PDF
-      # Busca todos los .tex en la carpeta output y los convierte a PDF
+      # 6. COMPILAR LATEX A PDF
       - name: Compilar LaTeX
         uses: xu-cheng/latex-action@v3
         with:
@@ -55,8 +49,14 @@ jobs:
           # Importante: para que encuentre imágenes u otros recursos si los añades luego
           work_in_root_file_dir: true 
 
-      # 6. PUBLICAR EN GITHUB PAGES (Tu Portfolio Web)
-      # Coge todo lo que hay en 'output' (HTML + PDFs) y lo sube a la web
+      # 7. SUBIR PDFS PARA DESCARGAR (Artifacts)
+      - name: Subir PDFs (Artifacts)
+        uses: actions/upload-artifact@v4
+        with:
+          name: mis-cvs-pdf
+          path: output/*.pdf
+
+      # 8. PUBLICAR EN GITHUB PAGES
       - name: Desplegar en GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
