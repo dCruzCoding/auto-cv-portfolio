@@ -35,6 +35,7 @@ jobs:
           YAML_CONTENT: ${{ secrets.DATA_YAML }}
         run: |
           # Escribimos el contenido del secreto en el archivo que espera el script
+          mkdir -p data
           echo "$YAML_CONTENT" > data/info.yaml
       # -------------------------------
 
