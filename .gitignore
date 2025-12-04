@@ -1,0 +1,26 @@
+# --- Python ---
+__pycache__/
+*.pyc
+venv/
+env/
+
+# --- Archivos generados (IMPORTANTE) ---
+# Ignoramos la carpeta output porque el script 
+# la creará automáticamente en GitHub Actions.
+output/
+datos/
+data/info.yaml
+
+# --- Archivos temporales de LaTeX ---
+# (Por si compilas en local alguna vez)
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# --- Sistema / Editor ---
+.DS_Store
+.vscode/

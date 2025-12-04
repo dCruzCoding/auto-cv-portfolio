@@ -1,0 +1,63 @@
+name: Construir Portfolio y CVs
+
+# Se activa cuando haces un push a la rama 'main'
+on:
+  push:
+    branches: [ main ]
+
+# Permisos para que el bot pueda publicar en GitHub Pages
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Descargar tu código
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      # 2. Instalar Python
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      # 3. Instalar librerías (Jinja2 y PyYAML)
+      - name: Instalar dependencias
+        run: |
+          pip install -r requirements.txt
+
+            # --- NUEVO PASO DE SEGURIDAD ---
+      - name: Restaurar datos privados
+        env:
+          YAML_CONTENT: ${{ secrets.DATA_YAML }}
+        run: |
+          # Escribimos el contenido del secreto en el archivo que espera el script
+          echo "$YAML_CONTENT" > data/info.yaml
+      # -------------------------------
+
+      - name: Generar archivos con Python
+        run: python script.py
+
+      # 4. EJECUTAR TU SCRIPT (Genera .tex y .html en la carpeta output)
+      - name: Generar archivos con Python
+        run: python script.py
+
+      # 5. COMPILAR LATEX A PDF
+      # Busca todos los .tex en la carpeta output y los convierte a PDF
+      - name: Compilar LaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: output/*.tex
+          # Importante: para que encuentre imágenes u otros recursos si los añades luego
+          work_in_root_file_dir: true 
+
+      # 6. PUBLICAR EN GITHUB PAGES (Tu Portfolio Web)
+      # Coge todo lo que hay en 'output' (HTML + PDFs) y lo sube a la web
+      - name: Desplegar en GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./output

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ config.titulo_web }}</title>
+    <style>
+        /* ESTILOS BÁSICOS (CSS) */
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f4f4f9; padding: 20px; max-width: 800px; margin: auto; }
+        h1 { text-align: center; color: #333; }
+        
+        /* BOTONES DE FILTRO */
+        .filter-container { text-align: center; margin-bottom: 30px; }
+        .btn {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+            background-color: #ddd;
+            transition: 0.3s;
+        }
+        .btn:hover, .btn.active { background-color: #333; color: white; }
+
+        /* LAS TARJETAS (CARDS) */
+        .card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-left: 6px solid #ccc; /* Color por defecto */
+            display: block; /* Por defecto se ven */
+        }
+
+        /* COLORES SEGÚN ETIQUETA (Aquí usamos tus tags) */
+        .programacion      { border-color: #2ecc71; } /* Verde */
+        .investigacion     { border-color: #3498db; } /* Azul */
+        .atencion_cliente  { border-color: #e67e22; } /* Naranja */
+        
+        /* Si tiene varias etiquetas, podemos poner un indicador visual extra */
+        .tags-display span {
+            font-size: 0.8em;
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 5px;
+            color: #555;
+        }
+
+        /* LA MAGIA DE OCULTAR: Clase para esconder lo que no queremos ver */
+        .hide { display: none; }
+    </style>
+</head>
+<body>
+
+    <h1>{{ config.nombre }}</h1>
+    <p style="text-align: center;">{{ config.bio }}</p>
+
+    <!-- 1. BOTONES DE NAVEGACIÓN -->
+    <div class="filter-container">
+        <button class="btn active" onclick="filterSelection('all')">Ver Todo</button>
+        <button class="btn" onclick="filterSelection('programacion')">Programación</button>
+        <button class="btn" onclick="filterSelection('investigacion')">Investigación</button>
+        <button class="btn" onclick="filterSelection('atencion_cliente')">Atención Cliente</button>
+    </div>
+
+    <!-- 2. LISTA DE EXPERIENCIAS -->
+    <div class="container">
+        {% for item in experiencia %}
+            <!-- 
+               Aquí Jinja inyecta las etiquetas como clases CSS.
+               Ejemplo: <div class="card programacion atencion_cliente"> 
+            -->
+            <div class="card {{ item.tags | join(' ') }}">
+                <h2>{{ item.puesto }}</h2>
+                <h4>{{ item.empresa }}</h4>
+                <p>{{ item.descripcion }}</p>
+                
+                <!-- Mostramos visualmente los tags también -->
+                <div class="tags-display">
+                    {% for tag in item.tags %}
+                        <span>#{{ tag }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- 3. EL CEREBRO (JAVASCRIPT) -->
+    <script>
+        function filterSelection(c) {
+            var x, i;
+            x = document.getElementsByClassName("card");
+            
+            // Si es "all", quitamos la clase 'hide' de todo
+            if (c == "all") c = "";
+            
+            for (i = 0; i < x.length; i++) {
+                // Primero ocultamos todo o reseteamos
+                w3RemoveClass(x[i], "hide");
+                
+                // Si el elemento NO tiene la clase que buscamos, lo ocultamos
+                if (x[i].className.indexOf(c) == -1) {
+                    w3AddClass(x[i], "hide");
+                }
+            }
+        }
+
+        // Funciones auxiliares para añadir/quitar clases
+        function w3AddClass(element, name) {
+            var arr = element.className.split(" ");
+            if (arr.indexOf(name) == -1) {
+                element.className += " " + name;
+            }
+        }
+
+        function w3RemoveClass(element, name) {
+            var arr = element.className.split(" ");
+            while (arr.indexOf(name) > -1) {
+                arr.splice(arr.indexOf(name), 1);     
+            }
+            element.className = arr.join(" ");
+        }
+
+        // Script para activar el botón pulsado (estilo visual)
+        var btnContainer = document.querySelector(".filter-container");
+        var btns = btnContainer.getElementsByClassName("btn");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function(){
+                var current = document.getElementsByClassName("active");
+                current[0].className = current[0].className.replace(" active", "");
+                this.className += " active";
+            });
+        }
+    </script>
+
+</body>
+</html>
