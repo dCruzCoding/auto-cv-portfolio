@@ -1,11 +1,99 @@
-\documentclass{article}
+\documentclass[a4paper,10pt]{article}
+
+% --- PAQUETES DE DISEÑO ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[default]{lato} % Fuente moderna sans-serif
+\usepackage[margin=1.25cm]{geometry} % Márgenes aprovechados
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fontawesome5} % Para los iconos (LinkedIn, Mail...)
+\usepackage{titlesec}
+\usepackage{enumitem}
+
+% --- COLORES (Personalizables) ---
+\definecolor{primary}{RGB}{40, 100, 160} % Azul oscuro profesional
+\definecolor{secondary}{RGB}{80, 80, 80} % Gris oscuro
+
+% --- ESTILO DE TÍTULOS ---
+% Título de sección con línea debajo
+\titleformat{\section}
+{\Large\bfseries\color{primary}}
+{}{0em}
+{}[\titlerule]
+\titlespacing*{\section}{0pt}{1.2em}{0.6em}
+
+% --- QUITAR NUMERACIÓN ---
+\pagestyle{empty}
+
+% --- COMIENZO DEL DOCUMENTO ---
 \begin{document}
 
-\section{\VAR{config.nombre}}
+% === CABECERA ===
+\begin{center}
+    {\Huge \textbf{\VAR{config.nombre}}} \\ \vspace{0.2cm}
+    {\Large \textcolor{secondary}{\VAR{config.titulo_por_defecto}}} \\ \vspace{0.2cm}
+    
+    % Iconos de contacto (usamos condicionales por si algún dato falta)
+    \small
+    \BLOCK{ if config.email }
+        \faEnvelope \ \href{mailto:\VAR{config.email}}{\VAR{config.email}} \quad | \quad
+    \BLOCK{ endif }
+    \BLOCK{ if config.linkedin }
+        \faLinkedin \ \href{https://\VAR{config.linkedin}}{LinkedIn} \quad | \quad
+    \BLOCK{ endif }
+    \BLOCK{ if config.github }
+        \faGithub \ \href{https://\VAR{config.github}}{GitHub} \quad | \quad
+    \BLOCK{ endif }
+    \BLOCK{ if config.web }
+        \faGlobe \ \href{https://\VAR{config.web}}{Portfolio}
+    \BLOCK{ endif }
+\end{center}
 
-\BLOCK{ for item in experiencia }
-    \subsection*{\VAR{item.puesto} en \VAR{item.empresa}}
-    \VAR{item.descripcion}
-\BLOCK{ endfor }
+\vspace{0.3cm}
+
+% === PERFIL ===
+\BLOCK{ if config.perfil }
+\section*{Perfil}
+\VAR{config.perfil}
+\BLOCK{ endif }
+
+% === EXPERIENCIA ===
+\section*{Experiencia Laboral}
+\begin{itemize}[leftmargin=0cm, label={}]
+    \BLOCK{ for item in experiencia }
+    \item 
+        \textbf{\large \VAR{item.puesto}} \hfill \textbf{\VAR{item.fecha}} \\
+        \textcolor{primary}{\textit{\VAR{item.empresa}}} \ \textbullet \ \textit{\VAR{item.ubicacion}} \\
+        \vspace{0.05cm}
+        \VAR{item.descripcion}
+        \vspace{0.3cm}
+    \BLOCK{ endfor }
+\end{itemize}
+
+% === FORMACIÓN ===
+% Solo mostramos la sección si hay datos en la lista filtrada
+\BLOCK{ if formacion }
+\section*{Formación Académica}
+\begin{itemize}[leftmargin=0cm, label={}]
+    \BLOCK{ for item in formacion }
+    \item 
+        \textbf{\VAR{item.titulo}} \hfill \VAR{item.fecha} \\
+        \textit{\VAR{item.centro}}
+        \vspace{0.15cm}
+    \BLOCK{ endfor }
+\end{itemize}
+\BLOCK{ endif }
+
+% === HABILIDADES ===
+\BLOCK{ if habilidades }
+\section*{Habilidades y Herramientas}
+\begin{itemize}[leftmargin=0cm, label={}]
+    \item 
+    \BLOCK{ for item in habilidades }
+        \colorbox{primary!10}{\textcolor{black}{\textbf{\VAR{item.nombre}}}} \quad
+    \BLOCK{ endfor }
+\end{itemize}
+\BLOCK{ endif }
 
 \end{document}
