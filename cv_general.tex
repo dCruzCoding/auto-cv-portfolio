@@ -1,13 +1,73 @@
-\documentclass{article}
+\documentclass[a4paper,10pt]{article}
+
+% --- PAQUETES DE DISEÑO ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[default]{lato} % Fuente moderna sans-serif
+\usepackage[margin=1.25cm]{geometry} % Márgenes aprovechados
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fontawesome5} % Para los iconos (LinkedIn, Mail...)
+\usepackage{titlesec}
+\usepackage{enumitem}
+
+% --- COLORES (Personalizables) ---
+\definecolor{primary}{RGB}{40, 100, 160} % Azul oscuro profesional
+\definecolor{secondary}{RGB}{80, 80, 80} % Gris oscuro
+
+% --- ESTILO DE TÍTULOS ---
+% Título de sección con línea debajo
+\titleformat{\section}
+{\Large\bfseries\color{primary}}
+{}{0em}
+{}[\titlerule]
+\titlespacing*{\section}{0pt}{1.2em}{0.6em}
+
+% --- QUITAR NUMERACIÓN ---
+\pagestyle{empty}
+
+% --- COMIENZO DEL DOCUMENTO ---
 \begin{document}
 
-\section{Tu Nombre}
+% === CABECERA ===
+\begin{center}
+    {\Huge \textbf{Tu Nombre}} \\ \vspace{0.2cm}
+    {\Large \textcolor{secondary}{}} \\ \vspace{0.2cm}
+    
+    % Iconos de contacto (usamos condicionales por si algún dato falta)
+    \small
+                \end{center}
 
-    \subsection*{Backend Developer en Tech S.L.}
-    Refactorización de APIs y bases de datos.
-    \subsection*{Investigador PhD en Universidad}
-    Análisis de datos clínicos y redacción de papers.
-    \subsection*{Soporte Técnico Especializado en HelpDesk Corp}
-    Resolución de incidencias complejas y trato directo con el cliente.
+\vspace{0.3cm}
+
+% === PERFIL ===
+
+% === EXPERIENCIA ===
+\section*{Experiencia Laboral}
+\begin{itemize}[leftmargin=0cm, label={}]
+        \item 
+        \textbf{\large Backend Developer} \hfill \textbf{} \\
+        \textcolor{primary}{\textit{Tech S.L.}} \ \textbullet \ \textit{} \\
+        \vspace{0.05cm}
+        Refactorización de APIs y bases de datos.
+        \vspace{0.3cm}
+        \item 
+        \textbf{\large Investigador PhD} \hfill \textbf{} \\
+        \textcolor{primary}{\textit{Universidad}} \ \textbullet \ \textit{} \\
+        \vspace{0.05cm}
+        Análisis de datos clínicos y redacción de papers.
+        \vspace{0.3cm}
+        \item 
+        \textbf{\large Soporte Técnico Especializado} \hfill \textbf{} \\
+        \textcolor{primary}{\textit{HelpDesk Corp}} \ \textbullet \ \textit{} \\
+        \vspace{0.05cm}
+        Resolución de incidencias complejas y trato directo con el cliente.
+        \vspace{0.3cm}
+    \end{itemize}
+
+% === FORMACIÓN ===
+% Solo mostramos la sección si hay datos en la lista filtrada
+
+% === HABILIDADES ===
 
 \end{document}

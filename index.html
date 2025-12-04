@@ -4,149 +4,157 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio Híbrido</title>
+    <!-- Fuente Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* ESTILOS BÁSICOS (CSS) */
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f4f4f9; padding: 20px; max-width: 800px; margin: auto; }
-        h1 { text-align: center; color: #333; }
+        /* ESTILOS BÁSICOS */
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9fa; color: #333; padding: 40px 20px; max-width: 900px; margin: auto; line-height: 1.6; }
+        h1 { text-align: center; color: #2c3e50; margin-bottom: 10px; }
+        .bio { text-align: center; color: #666; max-width: 600px; margin: 0 auto 30px auto; }
         
-        /* BOTONES DE FILTRO */
-        .filter-container { text-align: center; margin-bottom: 30px; }
-        .btn {
-            padding: 10px 20px;
-            margin: 5px;
-            border: none;
-            cursor: pointer;
+        /* BOTONES DE DESCARGA (PDFs) */
+        .downloads { text-align: center; margin-bottom: 40px; }
+        .btn-download {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #2c3e50;
+            color: white;
+            padding: 8px 15px;
             border-radius: 5px;
-            font-weight: bold;
-            background-color: #ddd;
+            margin: 5px;
+            font-size: 0.9em;
             transition: 0.3s;
         }
-        .btn:hover, .btn.active { background-color: #333; color: white; }
+        .btn-download:hover { background-color: #34495e; transform: translateY(-2px); }
 
-        /* LAS TARJETAS (CARDS) */
+        /* FILTROS */
+        .filter-container { text-align: center; margin-bottom: 30px; position: sticky; top: 10px; z-index: 100; }
+        .btn {
+            padding: 8px 16px;
+            margin: 0 5px;
+            border: 1px solid #ccc;
+            background: white;
+            cursor: pointer;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: 0.2s;
+            color: #555;
+        }
+        .btn:hover, .btn.active { background-color: #333; color: white; border-color: #333; }
+
+        /* SECCIONES */
+        h2.section-title { border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 40px; color: #444; }
+
+        /* TARJETAS (Card) */
         .card {
             background: white;
             padding: 20px;
             margin-bottom: 15px;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            border-left: 6px solid #ccc; /* Color por defecto */
-            display: block; /* Por defecto se ven */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 5px solid #ccc;
+            transition: transform 0.2s;
         }
+        .card:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
 
-        /* COLORES SEGÚN ETIQUETA (Aquí usamos tus tags) */
-        .programacion      { border-color: #2ecc71; } /* Verde */
-        .investigacion     { border-color: #3498db; } /* Azul */
-        .atencion_cliente  { border-color: #e67e22; } /* Naranja */
+        /* Colores por Tag */
+        .programacion      { border-color: #2ecc71; }
+        .investigacion     { border-color: #3498db; }
+        .atencion_cliente  { border-color: #e67e22; }
+
+        .meta { font-size: 0.85em; color: #777; margin-bottom: 10px; }
         
-        /* Si tiene varias etiquetas, podemos poner un indicador visual extra */
-        .tags-display span {
-            font-size: 0.8em;
-            background: #eee;
-            padding: 2px 6px;
+        /* SKILLS (Etiquetas) */
+        .skill-tag {
+            display: inline-block;
+            background: #e9ecef;
+            padding: 4px 8px;
             border-radius: 4px;
+            font-size: 0.85em;
             margin-right: 5px;
-            color: #555;
+            margin-bottom: 5px;
+            color: #495057;
         }
-
-        /* LA MAGIA DE OCULTAR: Clase para esconder lo que no queremos ver */
+        
         .hide { display: none; }
     </style>
 </head>
 <body>
 
     <h1>Tu Nombre</h1>
-    <p style="text-align: center;"></p>
+    <p class="bio"></p>
 
-    <!-- 1. BOTONES DE NAVEGACIÓN -->
+    <!-- ZONA DE DESCARGAS -->
+    <div class="downloads">
+        <strong>Descargar CVs en PDF:</strong><br>
+        <a href="cv_programacion.pdf" class="btn-download">💻 Programación</a>
+        <a href="cv_investigacion.pdf" class="btn-download">🧪 Investigación</a>
+        <a href="cv_general.pdf" class="btn-download">📄 General</a>
+    </div>
+
+    <!-- FILTROS -->
     <div class="filter-container">
-        <button class="btn active" onclick="filterSelection('all')">Ver Todo</button>
+        <button class="btn active" onclick="filterSelection('all')">Todo</button>
         <button class="btn" onclick="filterSelection('programacion')">Programación</button>
         <button class="btn" onclick="filterSelection('investigacion')">Investigación</button>
         <button class="btn" onclick="filterSelection('atencion_cliente')">Atención Cliente</button>
     </div>
 
-    <!-- 2. LISTA DE EXPERIENCIAS -->
+    <!-- EXPERIENCIA -->
+    <h2 class="section-title">Experiencia Laboral</h2>
     <div class="container">
         
-            <!-- 
-               Aquí Jinja inyecta las etiquetas como clases CSS.
-               Ejemplo: <div class="card programacion atencion_cliente"> 
-            -->
             <div class="card programacion">
-                <h2>Backend Developer</h2>
-                <h4>Tech S.L.</h4>
+                <h3>Backend Developer</h3>
+                <div class="meta">Tech S.L. | </div>
                 <p>Refactorización de APIs y bases de datos.</p>
-                
-                <!-- Mostramos visualmente los tags también -->
-                <div class="tags-display">
-                    
-                        <span>#programacion</span>
-                    
-                </div>
             </div>
         
-            <!-- 
-               Aquí Jinja inyecta las etiquetas como clases CSS.
-               Ejemplo: <div class="card programacion atencion_cliente"> 
-            -->
             <div class="card investigacion psicologia">
-                <h2>Investigador PhD</h2>
-                <h4>Universidad</h4>
+                <h3>Investigador PhD</h3>
+                <div class="meta">Universidad | </div>
                 <p>Análisis de datos clínicos y redacción de papers.</p>
-                
-                <!-- Mostramos visualmente los tags también -->
-                <div class="tags-display">
-                    
-                        <span>#investigacion</span>
-                    
-                        <span>#psicologia</span>
-                    
-                </div>
             </div>
         
-            <!-- 
-               Aquí Jinja inyecta las etiquetas como clases CSS.
-               Ejemplo: <div class="card programacion atencion_cliente"> 
-            -->
             <div class="card atencion_cliente programacion">
-                <h2>Soporte Técnico Especializado</h2>
-                <h4>HelpDesk Corp</h4>
+                <h3>Soporte Técnico Especializado</h3>
+                <div class="meta">HelpDesk Corp | </div>
                 <p>Resolución de incidencias complejas y trato directo con el cliente.</p>
-                
-                <!-- Mostramos visualmente los tags también -->
-                <div class="tags-display">
-                    
-                        <span>#atencion_cliente</span>
-                    
-                        <span>#programacion</span>
-                    
-                </div>
             </div>
         
     </div>
 
-    <!-- 3. EL CEREBRO (JAVASCRIPT) -->
+    <!-- FORMACIÓN (También filtrable) -->
+    <h2 class="section-title">Formación</h2>
+    <div class="container">
+        
+    </div>
+
+    <!-- SKILLS -->
+    <h2 class="section-title">Habilidades</h2>
+    <div class="container">
+        <!-- Contenedor simple para skills, si quieres que se filtren individualmente, habría que cambiar la estructura, pero visualmente queda bien así -->
+        <div class="card general programacion investigacion atencion_cliente" style="border-left: none;">
+            
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT DE FILTRADO (Igual que antes) -->
     <script>
         function filterSelection(c) {
             var x, i;
-            x = document.getElementsByClassName("card");
+            // Seleccionamos tanto tarjetas de experiencia como de formacion y spans de skills
+            x = document.querySelectorAll(".card, .skill-tag");
             
-            // Si es "all", quitamos la clase 'hide' de todo
             if (c == "all") c = "";
-            
             for (i = 0; i < x.length; i++) {
-                // Primero ocultamos todo o reseteamos
                 w3RemoveClass(x[i], "hide");
-                
-                // Si el elemento NO tiene la clase que buscamos, lo ocultamos
                 if (x[i].className.indexOf(c) == -1) {
                     w3AddClass(x[i], "hide");
                 }
             }
         }
 
-        // Funciones auxiliares para añadir/quitar clases
         function w3AddClass(element, name) {
             var arr = element.className.split(" ");
             if (arr.indexOf(name) == -1) {
@@ -162,9 +170,7 @@
             element.className = arr.join(" ");
         }
 
-        // Script para activar el botón pulsado (estilo visual)
-        var btnContainer = document.querySelector(".filter-container");
-        var btns = btnContainer.getElementsByClassName("btn");
+        var btns = document.getElementsByClassName("btn");
         for (var i = 0; i < btns.length; i++) {
             btns[i].addEventListener("click", function(){
                 var current = document.getElementsByClassName("active");
@@ -173,6 +179,5 @@
             });
         }
     </script>
-
 </body>
 </html>
