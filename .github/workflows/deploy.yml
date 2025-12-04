@@ -39,7 +39,7 @@ jobs:
 
       # 5. EJECUTAR TU SCRIPT (Genera .tex y .html en output)
       - name: Generar archivos con Python
-        run: python script.p6
+        run: python script.py
 
       # 6. COMPILAR LATEX A PDF
       - name: Compilar LaTeX
