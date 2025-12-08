@@ -158,10 +158,16 @@ INPUT /opt/texlive/texdir/texmf-dist/fonts/vf/typoland/lato/Lato-Bold-T1-TLF.vf
 INPUT /opt/texlive/texdir/texmf-dist/fonts/tfm/typoland/lato/Lato-Bold-T1-TLF--base.tfm
 INPUT /opt/texlive/texdir/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT /opt/texlive/texdir/texmf-dist/fonts/enc/dvips/lato/a_cl4kdn.enc
+INPUT /opt/texlive/texdir/texmf-dist/fonts/vf/typoland/lato/Lato-Regular-T1-TLF.vf
+INPUT /opt/texlive/texdir/texmf-dist/fonts/tfm/typoland/lato/Lato-Regular-T1-TLF--base.tfm
 INPUT /opt/texlive/texdir/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free1.enc
 INPUT /opt/texlive/texdir/texmf-dist/fonts/vf/typoland/lato/Lato-Regular-T1-TLF.vf
 INPUT /opt/texlive/texdir/texmf-dist/fonts/tfm/typoland/lato/Lato-Regular-T1-TLF--base.tfm
 INPUT /opt/texlive/texdir/texmf-dist/fonts/enc/dvips/fontawesome5/fa5brands0.enc
+INPUT /opt/texlive/texdir/texmf-dist/fonts/vf/typoland/lato/Lato-Bold-T1-TLF.vf
+INPUT /opt/texlive/texdir/texmf-dist/fonts/tfm/typoland/lato/Lato-Bold-T1-TLF--base.tfm
+INPUT /opt/texlive/texdir/texmf-dist/fonts/vf/typoland/lato/Lato-Regular-T1-TLF.vf
+INPUT /opt/texlive/texdir/texmf-dist/fonts/tfm/typoland/lato/Lato-Regular-T1-TLF--base.tfm
 INPUT /opt/texlive/texdir/texmf-dist/fonts/vf/typoland/lato/Lato-Bold-T1-TLF.vf
 INPUT /opt/texlive/texdir/texmf-dist/fonts/tfm/typoland/lato/Lato-Bold-T1-TLF--base.tfm
 INPUT /opt/texlive/texdir/texmf-dist/fonts/vf/typoland/lato/Lato-Bold-T1-TLF.vf
@@ -171,8 +177,6 @@ INPUT /opt/texlive/texdir/texmf-dist/fonts/tfm/typoland/lato/Lato-Italic-T1-TLF-
 INPUT /opt/texlive/texdir/texmf-dist/fonts/vf/typoland/lato/Lato-Regular-TS1-TLF.vf
 INPUT /opt/texlive/texdir/texmf-dist/fonts/tfm/typoland/lato/Lato-Regular-TS1-TLF--base.tfm
 INPUT /opt/texlive/texdir/texmf-dist/fonts/enc/dvips/lato/a_rt66h3.enc
-INPUT /opt/texlive/texdir/texmf-dist/fonts/vf/typoland/lato/Lato-Bold-T1-TLF.vf
-INPUT /opt/texlive/texdir/texmf-dist/fonts/tfm/typoland/lato/Lato-Bold-T1-TLF--base.tfm
 INPUT cv_atencion.aux
 INPUT ./cv_atencion.out
 INPUT ./cv_atencion.out

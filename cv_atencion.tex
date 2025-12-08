@@ -1,59 +1,86 @@
 \documentclass[a4paper,10pt]{article}
+
+% --- PAQUETES DE DISEÑO ---
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[default]{lato} 
-\usepackage[margin=1.2cm]{geometry}
+\usepackage[default]{lato} % Fuente moderna sans-serif
+\usepackage[margin=1.25cm]{geometry} % Márgenes aprovechados
 \usepackage{xcolor}
 \usepackage{hyperref}
-\usepackage{fontawesome5}
+\usepackage{fontawesome5} % Para los iconos (LinkedIn, Mail...)
 \usepackage{titlesec}
 \usepackage{enumitem}
 
-% Colores
-\definecolor{primary}{RGB}{40, 100, 160} 
-\definecolor{secondary}{RGB}{80, 80, 80}
+% --- COLORES (Personalizables) ---
+\definecolor{primary}{RGB}{40, 100, 160} % Azul oscuro profesional
+\definecolor{secondary}{RGB}{80, 80, 80} % Gris oscuro
 
-% Títulos
-\titleformat{\section}{\Large\bfseries\color{primary}}{}{0em}{}
-\titlespacing*{\section}{0pt}{1em}{0.5em}
+% --- ESTILO DE TÍTULOS ---
+% Título de sección con línea debajo
+\titleformat{\section}
+{\Large\bfseries\color{primary}}
+{}{0em}
+{}[\titlerule]
+\titlespacing*{\section}{0pt}{1.2em}{0.6em}
+
+% --- QUITAR NUMERACIÓN ---
 \pagestyle{empty}
 
+% --- COMIENZO DEL DOCUMENTO ---
 \begin{document}
 
-% CABECERA
+% === CABECERA ===
 \begin{center}
-    {\Huge \textbf{Tu Nombre}} \\ \vspace{0.1cm}
-    {\Large \textcolor{secondary}{}} \\ \vspace{0.2cm}
+    {\Huge \textbf{Tu Nombre Completo}} \\ \vspace{0.2cm}
+    {\Large \textcolor{secondary}{Perfil Multidisciplinar}} \\ \vspace{0.2cm}
+    
+    % Iconos de contacto (usamos condicionales por si algún dato falta)
     \small
-    \faEnvelope \ \href{mailto:}{} \quad | \quad
-    \faLinkedin \ \href{https://}{LinkedIn} \quad | \quad
-    \faGithub \ \href{https://}{GitHub} \quad | \quad
-    \faGlobe \ \href{https://}{Portfolio}
-\end{center}
+            \faEnvelope \ \href{mailto:hola@tudominio.com}{hola@tudominio.com} \quad | \quad
+                \faLinkedin \ \href{https://linkedin.com/in/tuusuario}{LinkedIn} \quad | \quad
+                \faGithub \ \href{https://github.com/tuusuario}{GitHub} \quad | \quad
+                \faGlobe \ \href{https://tu-portfolio.github.io}{Portfolio}
+    \end{center}
 
-\vspace{0.2cm}
-% PERFIL
+\vspace{0.3cm}
 
-% EXPERIENCIA
-\section*{Experiencia Profesional}
+% === PERFIL ===
+\section*{Perfil}
+Profesional híbrido con experiencia en desarrollo backend e investigación en psicología. Apasionado por la intersección entre datos, conducta humana y tecnología.
+
+% === EXPERIENCIA ===
+\section*{Experiencia Laboral}
 \begin{itemize}[leftmargin=0cm, label={}]
         \item 
-        \textbf{\large Soporte Técnico Especializado} \hfill \small{} \\
-        \textcolor{primary}{\textit{HelpDesk Corp}} \ \textbullet \ \textit{} \\
-        \small{Resolución de incidencias complejas y trato directo con el cliente.} \vspace{0.2cm}
+        \textbf{\large Soporte Técnico} \hfill \textbf{2016 - 2018} \\
+        \textcolor{primary}{\textit{HelpDesk Corp}} \ \textbullet \ \textit{Remoto} \\
+        \vspace{0.05cm}
+        Resolución de incidencias de nivel 2 y trato directo con clientes internacionales.
+        \vspace{0.3cm}
     \end{itemize}
 
-% FORMACIÓN IT (Prioridad para perfil técnico)
+% === FORMACIÓN ===
+% Solo mostramos la sección si hay datos en la lista filtrada
+\section*{Formación Académica}
+\begin{itemize}[leftmargin=0cm, label={}]
+        \item 
+        \textbf{Grado en Psicología} \hfill 2014 - 2018 \\
+        \textit{Universidad X}
+        \vspace{0.15cm}
+        \item 
+        \textbf{Bootcamp Full Stack Web} \hfill 2020 \\
+        \textit{Code School Y}
+        \vspace{0.15cm}
+    \end{itemize}
 
-% FORMACIÓN ACADÉMICA
-
-% PROYECTOS (Opcional si hay espacio)
-
-% SKILLS Y CURSOS (Compacto)
-\section*{Habilidades y Otros Cursos}
-\noindent
-\textbf{Skills:} 
- \\
-\vspace{0.1cm}
+% === HABILIDADES ===
+\section*{Habilidades y Herramientas}
+\begin{itemize}[leftmargin=0cm, label={}]
+    \item 
+            \colorbox{primary!10}{\textcolor{black}{\textbf{Python / Django}}} \quad
+            \colorbox{primary!10}{\textcolor{black}{\textbf{Análisis de Datos (SPSS/R)}}} \quad
+            \colorbox{primary!10}{\textcolor{black}{\textbf{Atención al Cliente}}} \quad
+            \colorbox{primary!10}{\textcolor{black}{\textbf{Git - GitHub}}} \quad
+    \end{itemize}
 
 \end{document}

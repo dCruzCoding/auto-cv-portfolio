@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Híbrido</title>
+    <title></title>
     <!-- Fuente Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
@@ -81,8 +81,8 @@
 </head>
 <body>
 
-    <h1>Tu Nombre</h1>
-    <p class="bio"></p>
+    <h1>Tu Nombre Completo</h1>
+    <p class="bio">Profesional híbrido con experiencia en desarrollo backend e investigación en psicología. Apasionado por la intersección entre datos, conducta humana y tecnología.</p>
 
     <!-- ZONA DE DESCARGAS -->
     <div class="downloads">
@@ -106,20 +106,20 @@
         
             <div class="card programacion">
                 <h3>Backend Developer</h3>
-                <div class="meta">Tech S.L. | </div>
-                <p>Refactorización de APIs y bases de datos.</p>
+                <div class="meta">Tech Solutions S.L. | 2021 - Presente</div>
+                <p>Desarrollo de microservicios con Python y FastAPI. Optimización de consultas SQL.</p>
             </div>
         
             <div class="card investigacion psicologia">
-                <h3>Investigador PhD</h3>
-                <div class="meta">Universidad | </div>
-                <p>Análisis de datos clínicos y redacción de papers.</p>
+                <h3>Investigador Predoctoral</h3>
+                <div class="meta">Universidad Complutense | 2018 - 2021</div>
+                <p>Diseño experimental y análisis estadístico avanzado (SPSS, R) en psicología cognitiva.</p>
             </div>
         
             <div class="card atencion_cliente programacion">
-                <h3>Soporte Técnico Especializado</h3>
-                <div class="meta">HelpDesk Corp | </div>
-                <p>Resolución de incidencias complejas y trato directo con el cliente.</p>
+                <h3>Soporte Técnico</h3>
+                <div class="meta">HelpDesk Corp | 2016 - 2018</div>
+                <p>Resolución de incidencias de nivel 2 y trato directo con clientes internacionales.</p>
             </div>
         
     </div>
@@ -128,6 +128,16 @@
     <h2 class="section-title">Formación</h2>
     <div class="container">
         
+            <div class="card psicologia investigacion general">
+                <h3>Grado en Psicología</h3>
+                <div class="meta">Universidad X | 2014 - 2018</div>
+            </div>
+        
+            <div class="card programacion general">
+                <h3>Bootcamp Full Stack Web</h3>
+                <div class="meta">Code School Y | 2020</div>
+            </div>
+        
     </div>
 
     <!-- SKILLS -->
@@ -135,6 +145,22 @@
     <div class="container">
         <!-- Contenedor simple para skills, si quieres que se filtren individualmente, habría que cambiar la estructura, pero visualmente queda bien así -->
         <div class="card general programacion investigacion atencion_cliente" style="border-left: none;">
+            
+                 <!-- Truco: Aquí ponemos clases a los spans para ocultarlos si quieres hilar fino, 
+                      pero por ahora mostramos todos o usamos JS simple -->
+                 <span class="skill-tag programacion investigacion">Python / Django</span>
+            
+                 <!-- Truco: Aquí ponemos clases a los spans para ocultarlos si quieres hilar fino, 
+                      pero por ahora mostramos todos o usamos JS simple -->
+                 <span class="skill-tag investigacion psicologia">Análisis de Datos (SPSS/R)</span>
+            
+                 <!-- Truco: Aquí ponemos clases a los spans para ocultarlos si quieres hilar fino, 
+                      pero por ahora mostramos todos o usamos JS simple -->
+                 <span class="skill-tag atencion_cliente">Atención al Cliente</span>
+            
+                 <!-- Truco: Aquí ponemos clases a los spans para ocultarlos si quieres hilar fino, 
+                      pero por ahora mostramos todos o usamos JS simple -->
+                 <span class="skill-tag programacion general">Git - GitHub</span>
             
         </div>
     </div>
