@@ -1,61 +1,59 @@
 \documentclass[a4paper,10pt]{article}
-
-% --- PAQUETES DE DISEÑO ---
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[default]{lato} % Fuente moderna sans-serif
-\usepackage[margin=1.25cm]{geometry} % Márgenes aprovechados
+\usepackage[default]{lato} 
+\usepackage[margin=1.2cm]{geometry}
 \usepackage{xcolor}
 \usepackage{hyperref}
-\usepackage{fontawesome5} % Para los iconos (LinkedIn, Mail...)
+\usepackage{fontawesome5}
 \usepackage{titlesec}
 \usepackage{enumitem}
 
-% --- COLORES (Personalizables) ---
-\definecolor{primary}{RGB}{40, 100, 160} % Azul oscuro profesional
-\definecolor{secondary}{RGB}{80, 80, 80} % Gris oscuro
+% Colores
+\definecolor{primary}{RGB}{40, 100, 160} 
+\definecolor{secondary}{RGB}{80, 80, 80}
 
-% --- ESTILO DE TÍTULOS ---
-% Título de sección con línea debajo
-\titleformat{\section}
-{\Large\bfseries\color{primary}}
-{}{0em}
-{}[\titlerule]
-\titlespacing*{\section}{0pt}{1.2em}{0.6em}
-
-% --- QUITAR NUMERACIÓN ---
+% Títulos
+\titleformat{\section}{\Large\bfseries\color{primary}}{}{0em}{}
+\titlespacing*{\section}{0pt}{1em}{0.5em}
 \pagestyle{empty}
 
-% --- COMIENZO DEL DOCUMENTO ---
 \begin{document}
 
-% === CABECERA ===
+% CABECERA
 \begin{center}
-    {\Huge \textbf{Tu Nombre}} \\ \vspace{0.2cm}
+    {\Huge \textbf{Tu Nombre}} \\ \vspace{0.1cm}
     {\Large \textcolor{secondary}{}} \\ \vspace{0.2cm}
-    
-    % Iconos de contacto (usamos condicionales por si algún dato falta)
     \small
-                \end{center}
+    \faEnvelope \ \href{mailto:}{} \quad | \quad
+    \faLinkedin \ \href{https://}{LinkedIn} \quad | \quad
+    \faGithub \ \href{https://}{GitHub} \quad | \quad
+    \faGlobe \ \href{https://}{Portfolio}
+\end{center}
 
-\vspace{0.3cm}
+\vspace{0.2cm}
+% PERFIL
 
-% === PERFIL ===
-
-% === EXPERIENCIA ===
-\section*{Experiencia Laboral}
+% EXPERIENCIA
+\section*{Experiencia Profesional}
 \begin{itemize}[leftmargin=0cm, label={}]
         \item 
-        \textbf{\large Investigador PhD} \hfill \textbf{} \\
+        \textbf{\large Investigador PhD} \hfill \small{} \\
         \textcolor{primary}{\textit{Universidad}} \ \textbullet \ \textit{} \\
-        \vspace{0.05cm}
-        Análisis de datos clínicos y redacción de papers.
-        \vspace{0.3cm}
+        \small{Análisis de datos clínicos y redacción de papers.} \vspace{0.2cm}
     \end{itemize}
 
-% === FORMACIÓN ===
-% Solo mostramos la sección si hay datos en la lista filtrada
+% FORMACIÓN IT (Prioridad para perfil técnico)
 
-% === HABILIDADES ===
+% FORMACIÓN ACADÉMICA
+
+% PROYECTOS (Opcional si hay espacio)
+
+% SKILLS Y CURSOS (Compacto)
+\section*{Habilidades y Otros Cursos}
+\noindent
+\textbf{Skills:} 
+ \\
+\vspace{0.1cm}
 
 \end{document}
