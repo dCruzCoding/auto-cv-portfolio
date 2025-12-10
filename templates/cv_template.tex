@@ -3,20 +3,19 @@
 % --- PAQUETES DE DISEÑO ---
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[default]{lato} % Fuente moderna sans-serif
-\usepackage[margin=1.25cm]{geometry} % Márgenes aprovechados
+\usepackage[default]{lato} 
+\usepackage[margin=1.25cm]{geometry} 
 \usepackage{xcolor}
 \usepackage{hyperref}
-\usepackage{fontawesome5} % Para los iconos (LinkedIn, Mail...)
+\usepackage{fontawesome5} 
 \usepackage{titlesec}
 \usepackage{enumitem}
 
-% --- COLORES (Personalizables) ---
-\definecolor{primary}{RGB}{40, 100, 160} % Azul oscuro profesional
-\definecolor{secondary}{RGB}{80, 80, 80} % Gris oscuro
+% --- COLORES ---
+\definecolor{primary}{RGB}{40, 100, 160} 
+\definecolor{secondary}{RGB}{80, 80, 80} 
 
 % --- ESTILO DE TÍTULOS ---
-% Título de sección con línea debajo
 \titleformat{\section}
 {\Large\bfseries\color{primary}}
 {}{0em}
@@ -31,13 +30,16 @@
 
 % === CABECERA ===
 \begin{center}
-    {\Huge \textbf{\VAR{config.nombre}}} \\ \vspace{0.2cm}
-    {\Large \textcolor{secondary}{\VAR{config.titulo_por_defecto}}} \\ \vspace{0.2cm}
+    % APLICAMOS escape_tex AL NOMBRE Y TÍTULO
+    {\Huge \textbf{\VAR{config.nombre | escape_tex}}} \\ \vspace{0.2cm}
+    {\Large \textcolor{secondary}{\VAR{config.titulo_por_defecto | escape_tex}}} \\ \vspace{0.2cm}
     
-    % Iconos de contacto (usamos condicionales por si algún dato falta)
+    % Iconos de contacto
+    % NOTA: En los enlaces (\href), el primer argumento es la URL (mejor no escapar salvo que de error),
+    % el segundo argumento es el texto visible (SÍ hay que escapar).
     \small
     \BLOCK{ if config.email }
-        \faEnvelope \ \href{mailto:\VAR{config.email}}{\VAR{config.email}} \quad | \quad
+        \faEnvelope \ \href{mailto:\VAR{config.email}}{\VAR{config.email | escape_tex}} \quad | \quad
     \BLOCK{ endif }
     \BLOCK{ if config.linkedin }
         \faLinkedin \ \href{https://\VAR{config.linkedin}}{LinkedIn} \quad | \quad
@@ -55,7 +57,8 @@
 % === PERFIL ===
 \BLOCK{ if config.perfil }
 \section*{Perfil}
-\VAR{config.perfil}
+% Aquí aplicamos el filtro al texto del perfil
+\VAR{config.perfil | escape_tex}
 \BLOCK{ endif }
 
 % === EXPERIENCIA ===
@@ -63,23 +66,23 @@
 \begin{itemize}[leftmargin=0cm, label={}]
     \BLOCK{ for item in experiencia }
     \item 
-        \textbf{\large \VAR{item.puesto}} \hfill \textbf{\VAR{item.fecha}} \\
-        \textcolor{primary}{\textit{\VAR{item.empresa}}} \ \textbullet \ \textit{\VAR{item.ubicacion}} \\
+        % Aplicamos filtro a puesto, fecha, empresa, ubicación y descripción
+        \textbf{\large \VAR{item.puesto | escape_tex}} \hfill \textbf{\VAR{item.fecha | escape_tex}} \\
+        \textcolor{primary}{\textit{\VAR{item.empresa | escape_tex}}} \ \textbullet \ \textit{\VAR{item.ubicacion | escape_tex}} \\
         \vspace{0.05cm}
-        \VAR{item.descripcion}
+        \VAR{item.descripcion | escape_tex}
         \vspace{0.3cm}
     \BLOCK{ endfor }
 \end{itemize}
 
 % === FORMACIÓN ===
-% Solo mostramos la sección si hay datos en la lista filtrada
 \BLOCK{ if formacion }
 \section*{Formación Académica}
 \begin{itemize}[leftmargin=0cm, label={}]
     \BLOCK{ for item in formacion }
     \item 
-        \textbf{\VAR{item.titulo}} \hfill \VAR{item.fecha} \\
-        \textit{\VAR{item.centro}}
+        \textbf{\VAR{item.titulo | escape_tex}} \hfill \VAR{item.fecha | escape_tex} \\
+        \textit{\VAR{item.centro | escape_tex}}
         \vspace{0.15cm}
     \BLOCK{ endfor }
 \end{itemize}
@@ -91,7 +94,8 @@
 \begin{itemize}[leftmargin=0cm, label={}]
     \item 
     \BLOCK{ for item in habilidades }
-        \colorbox{primary!10}{\textcolor{black}{\textbf{\VAR{item.nombre}}}} \quad
+        % Filtro también aquí por si pones "C++" o "C#"
+        \colorbox{primary!10}{\textcolor{black}{\textbf{\VAR{item.nombre | escape_tex}}}} \quad
     \BLOCK{ endfor }
 \end{itemize}
 \BLOCK{ endif }

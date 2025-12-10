@@ -29,19 +29,14 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      # 4. RESTAURAR DATOS PRIVADOS (Crea carpeta y archivo)
-      - name: Restaurar datos privados
-        env:
-          YAML_CONTENT: ${{ secrets.DATA_YAML }}
-        run: |
-          mkdir -p data
-          echo "$YAML_CONTENT" > data/info.yaml
-
-      # 5. EJECUTAR TU SCRIPT (Genera .tex y .html en output)
+      # 4. EJECUTAR TU SCRIPT (Genera .tex y .html en output)
       - name: Generar archivos con Python
+        env: 
+          # Aquí mapeamos los Secretos de GitHub a las variables que busca Python
+          MY_PHONE: ${{ secrets.PHONE }}
         run: python script.py
 
-      # 6. COMPILAR LATEX A PDF
+      # 5. COMPILAR LATEX A PDF
       - name: Compilar LaTeX
         uses: xu-cheng/latex-action@v3
         with:
@@ -49,14 +44,14 @@ jobs:
           # Importante: para que encuentre imágenes u otros recursos si los añades luego
           work_in_root_file_dir: true 
 
-      # 7. SUBIR PDFS PARA DESCARGAR (Artifacts)
+      # 6. SUBIR PDFS PARA DESCARGAR (Artifacts)
       - name: Subir PDFs (Artifacts)
         uses: actions/upload-artifact@v4
         with:
           name: mis-cvs-pdf
           path: output/*.pdf
 
-      # 8. PUBLICAR EN GITHUB PAGES
+      # 7. PUBLICAR EN GITHUB PAGES
       - name: Desplegar en GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
