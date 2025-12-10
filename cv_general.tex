@@ -1,107 +1,161 @@
 \documentclass[a4paper,10pt]{article}
 
-% --- PAQUETES DE DISEÑO ---
+% --- PAQUETES ---
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[default]{lato} 
-\usepackage[margin=1.25cm]{geometry} 
-\usepackage{xcolor}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[margin=0cm]{geometry} % Márgenes a 0 para controlar todo manualmente
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usepackage{fontawesome5}
 \usepackage{hyperref}
-\usepackage{fontawesome5} 
-\usepackage{titlesec}
 \usepackage{enumitem}
+\usepackage{setspace}
 
 % --- COLORES ---
-\definecolor{primary}{RGB}{40, 100, 160} 
-\definecolor{secondary}{RGB}{80, 80, 80} 
+\definecolor{sidebarbackground}{HTML}{353839}
+\definecolor{sidebartext}{HTML}{FFFFFF}
+\definecolor{contbackground}{HTML}{DCAE71}
+\definecolor{bodytext}{HTML}{353839}
 
-% --- ESTILO DE TÍTULOS ---
-\titleformat{\section}
-{\Large\bfseries\color{primary}}
-{}{0em}
-{}[\titlerule]
-\titlespacing*{\section}{0pt}{1.2em}{0.6em}
+% --- ESTILOS DE SECCIÓN ---
+\newcommand{\sidebarsection}[1]{
+    \vspace{0.4cm}
+    {\Large\bfseries\color{contbackground} #1} \\
+    \vspace{0.1cm}
+}
 
-% --- QUITAR NUMERACIÓN ---
-\pagestyle{empty}
+\newcommand{\mainsection}[1]{
+    \vspace{0.5cm}
+    {\LARGE\bfseries\color{sidebarbackground} \MakeUppercase{#1}} \\
+    {\color{contbackground} \rule{\linewidth}{2pt}} \\
+    \vspace{0.2cm}
+}
 
-% --- COMIENZO DEL DOCUMENTO ---
+\setlength{\parindent}{0pt}
+
 \begin{document}
 
-% === CABECERA ===
-\begin{center}
-    % APLICAMOS escape_tex AL NOMBRE Y TÍTULO
-    {\Huge \textbf{Tu Nombre Completo}} \\ \vspace{0.2cm}
-    {\Large \textcolor{secondary}{Perfil Multidisciplinar}} \\ \vspace{0.2cm}
+% -----------------------------------------------------------
+% FONDO DE LA BARRA LATERAL (Dibujado manualmente con TikZ)
+% -----------------------------------------------------------
+% Esto reemplaza al comando \backgroundcolor que daba el Fatal Error
+\begin{tikzpicture}[remember picture,overlay]
+    \fill[sidebarbackground] (current page.north west) rectangle ([xshift=7cm]current page.south west);
+\end{tikzpicture}
+
+% -----------------------------------------------------------
+% MAQUETACIÓN DE COLUMNAS (Usando minipages estándar)
+% -----------------------------------------------------------
+
+% === COLUMNA IZQUIERDA (Gris) ===
+\begin{minipage}[t][\textheight][t]{7cm} % Ancho fijo de 7cm
+    \vspace{1cm} % Margen superior
+    \color{sidebartext}
     
-    % Iconos de contacto
-    % NOTA: En los enlaces (\href), el primer argumento es la URL (mejor no escapar salvo que de error),
-    % el segundo argumento es el texto visible (SÍ hay que escapar).
-    \small
-            \faEnvelope \ \href{mailto:hola@tudominio.com}{hola@tudominio.com} \quad | \quad
-                \faLinkedin \ \href{https://linkedin.com/in/tuusuario}{LinkedIn} \quad | \quad
-                \faGithub \ \href{https://github.com/tuusuario}{GitHub} \quad | \quad
-                \faGlobe \ \href{https://tu-portfolio.github.io}{Portfolio}
-    \end{center}
+    % Contenedor interno para dar margen a la izquierda del texto
+    \hspace{0.5cm}
+    \begin{minipage}[t]{6cm} 
+        
+        % CONTACTO
+        \sidebarsection{Contacto}
+        \small
+                    \faEnvelope \hspace{2mm} \href{mailto:hola@tudominio.com}{\textcolor{white}{hola@tudominio.com}} \\ \vspace{0.2cm}
+                
+                    \faPhone \hspace{2mm} +34 666-666-666 \\ \vspace{0.2cm}
+                
+                    \faLinkedin \hspace{2mm} \href{https://linkedin.com/in/tuusuario}{\textcolor{white}{LinkedIn}} \\ \vspace{0.2cm}
+                
+                    \faGithub \hspace{2mm} \href{https://github.com/tuusuario}{\textcolor{white}{GitHub}} \\ \vspace{0.2cm}
+                
+                    \faGlobe \hspace{2mm} \href{https://tu-portfolio.github.io}{\textcolor{white}{Portfolio}} \\ \vspace{0.2cm}
+        
+        % FORMACIÓN
+                    \sidebarsection{Formación}
+                            \textbf{Grado en Psicología} \\
+                {\footnotesize \color{contbackground} 2014 - 2018} \\
+                {\footnotesize \textit{Universidad X}} \\
+                \vspace{0.3cm}
+                            \textbf{Bootcamp Full Stack Web} \\
+                {\footnotesize \color{contbackground} 2020} \\
+                {\footnotesize \textit{Code School Y}} \\
+                \vspace{0.3cm}
+                    
+        % SKILLS
+                    \sidebarsection{Skills}
+            \begin{itemize}[leftmargin=0.4cm, label={\color{contbackground}\small\faCircle}]
+                                    \item Python / Django
+                                    \item Análisis de Datos (SPSS/R)
+                                    \item Atención al Cliente
+                                    \item Git - GitHub
+                            \end{itemize}
+                
+    \end{minipage}
+\end{minipage}% <--- IMPORTANTE: Este % evita espacios en blanco indeseados
+%
+% === COLUMNA DERECHA (Blanca) ===
+\begin{minipage}[t][\textheight][t]{13cm} % El resto del ancho A4 (aprox)
+    \vspace{1cm}
+    \color{bodytext}
+    
+    % Contenedor interno para margen
+    \hspace{0.5cm}
+    \begin{minipage}[t]{12cm}
 
-\vspace{0.3cm}
+        % CABECERA
+        {\Huge \bfseries \MakeUppercase{Tu Nombre Completo}} \\
+        \vspace{0.2cm}
+        {\Large \color{contbackground} Perfil Multidisciplinar} 
+        \vspace{0.5cm}
 
-% === PERFIL ===
-\section*{Perfil}
-% Aquí aplicamos el filtro al texto del perfil
-Profesional híbrido con experiencia en desarrollo backend e investigación en psicología. Apasionado por la intersección entre datos, conducta humana y tecnología.
-
-% === EXPERIENCIA ===
-\section*{Experiencia Laboral}
-\begin{itemize}[leftmargin=0cm, label={}]
-        \item 
-        % Aplicamos filtro a puesto, fecha, empresa, ubicación y descripción
-        \textbf{\large Backend Developer} \hfill \textbf{2021 - Presente} \\
-        \textcolor{primary}{\textit{Tech Solutions S.L.}} \ \textbullet \ \textit{Madrid, España} \\
-        \vspace{0.05cm}
-        Desarrollo de microservicios con Python y FastAPI. Optimización de consultas SQL.
+        % PERFIL
+                \mainsection{Perfil}
+        \large Profesional híbrido con experiencia en desarrollo backend e investigación en psicología. Apasionado por la intersección entre datos, conducta humana y tecnología.
         \vspace{0.3cm}
-        \item 
-        % Aplicamos filtro a puesto, fecha, empresa, ubicación y descripción
-        \textbf{\large Investigador Predoctoral} \hfill \textbf{2018 - 2021} \\
-        \textcolor{primary}{\textit{Universidad Complutense}} \ \textbullet \ \textit{Madrid, España} \\
-        \vspace{0.05cm}
-        Diseño experimental y análisis estadístico avanzado (SPSS, R) en psicología cognitiva.
-        \vspace{0.3cm}
-        \item 
-        % Aplicamos filtro a puesto, fecha, empresa, ubicación y descripción
-        \textbf{\large Soporte Técnico} \hfill \textbf{2016 - 2018} \\
-        \textcolor{primary}{\textit{HelpDesk Corp}} \ \textbullet \ \textit{Remoto} \\
-        \vspace{0.05cm}
-        Resolución de incidencias de nivel 2 y trato directo con clientes internacionales.
-        \vspace{0.3cm}
-    \end{itemize}
-
-% === FORMACIÓN ===
-\section*{Formación Académica}
-\begin{itemize}[leftmargin=0cm, label={}]
-        \item 
-        \textbf{Grado en Psicología} \hfill 2014 - 2018 \\
-        \textit{Universidad X}
-        \vspace{0.15cm}
-        \item 
-        \textbf{Bootcamp Full Stack Web} \hfill 2020 \\
-        \textit{Code School Y}
-        \vspace{0.15cm}
-    \end{itemize}
-
-% === HABILIDADES ===
-\section*{Habilidades y Herramientas}
-\begin{itemize}[leftmargin=0cm, label={}]
-    \item 
-            % Filtro también aquí por si pones "C++" o "C#"
-        \colorbox{primary!10}{\textcolor{black}{\textbf{Python / Django}}} \quad
-            % Filtro también aquí por si pones "C++" o "C#"
-        \colorbox{primary!10}{\textcolor{black}{\textbf{Análisis de Datos (SPSS/R)}}} \quad
-            % Filtro también aquí por si pones "C++" o "C#"
-        \colorbox{primary!10}{\textcolor{black}{\textbf{Atención al Cliente}}} \quad
-            % Filtro también aquí por si pones "C++" o "C#"
-        \colorbox{primary!10}{\textcolor{black}{\textbf{Git - GitHub}}} \quad
-    \end{itemize}
+        
+        % EXPERIENCIA
+        \mainsection{Experiencia}
+        \begin{itemize}[leftmargin=0cm, label={}]
+                        \item 
+                {\large \textbf{Backend Developer}} 
+                \hfill 
+                {\color{sidebarbackground} \textbf{\small 2021 - Presente}} \\
+                
+                {\color{contbackground} \textbf{Tech Solutions S.L.}} 
+                \ \textbullet \ 
+                {\small \textit{Madrid, España}} \\
+                
+                \vspace{0.1cm}
+                {\small Desarrollo de microservicios con Python y FastAPI. Optimización de consultas SQL.}
+                \vspace{0.5cm}
+                        \item 
+                {\large \textbf{Investigador Predoctoral}} 
+                \hfill 
+                {\color{sidebarbackground} \textbf{\small 2018 - 2021}} \\
+                
+                {\color{contbackground} \textbf{Universidad Complutense}} 
+                \ \textbullet \ 
+                {\small \textit{Madrid, España}} \\
+                
+                \vspace{0.1cm}
+                {\small Diseño experimental y análisis estadístico avanzado (SPSS, R) en psicología cognitiva.}
+                \vspace{0.5cm}
+                        \item 
+                {\large \textbf{Soporte Técnico}} 
+                \hfill 
+                {\color{sidebarbackground} \textbf{\small 2016 - 2018}} \\
+                
+                {\color{contbackground} \textbf{HelpDesk Corp}} 
+                \ \textbullet \ 
+                {\small \textit{Remoto}} \\
+                
+                \vspace{0.1cm}
+                {\small Resolución de incidencias de nivel 2 y trato directo con clientes internacionales.}
+                \vspace{0.5cm}
+                    \end{itemize}
+        
+    \end{minipage}
+\end{minipage}
 
 \end{document}
