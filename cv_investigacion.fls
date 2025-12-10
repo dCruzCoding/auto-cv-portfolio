@@ -273,10 +273,6 @@ INPUT /opt/texlive/texdir/texmf-dist/fonts/tfm/adobe/helvetic/phvb8t.tfm
 INPUT /opt/texlive/texdir/texmf-dist/fonts/tfm/adobe/helvetic/phvro8t.tfm
 INPUT /opt/texlive/texdir/texmf-dist/fonts/tfm/adobe/helvetic/phvro8t.tfm
 INPUT /opt/texlive/texdir/texmf-dist/fonts/tfm/adobe/helvetic/phvb8t.tfm
-INPUT /opt/texlive/texdir/texmf-dist/tex/latex/psnfss/ts1phv.fd
-INPUT /opt/texlive/texdir/texmf-dist/tex/latex/psnfss/ts1phv.fd
-INPUT /opt/texlive/texdir/texmf-dist/tex/latex/psnfss/ts1phv.fd
-INPUT /opt/texlive/texdir/texmf-dist/fonts/tfm/adobe/helvetic/phvr8c.tfm
 INPUT /opt/texlive/texdir/texmf-dist/fonts/vf/adobe/helvetic/phvb8t.vf
 INPUT /opt/texlive/texdir/texmf-dist/fonts/tfm/adobe/helvetic/phvb8r.tfm
 INPUT /opt/texlive/texdir/texmf-var/fonts/map/pdftex/updmap/pdftex.map
@@ -302,6 +298,10 @@ INPUT /opt/texlive/texdir/texmf-dist/fonts/vf/adobe/helvetic/phvro8t.vf
 INPUT /opt/texlive/texdir/texmf-dist/fonts/tfm/adobe/helvetic/phvro8r.tfm
 INPUT /opt/texlive/texdir/texmf-dist/fonts/vf/adobe/helvetic/phvb8t.vf
 INPUT /opt/texlive/texdir/texmf-dist/fonts/tfm/adobe/helvetic/phvb8r.tfm
+INPUT /opt/texlive/texdir/texmf-dist/tex/latex/psnfss/ts1phv.fd
+INPUT /opt/texlive/texdir/texmf-dist/tex/latex/psnfss/ts1phv.fd
+INPUT /opt/texlive/texdir/texmf-dist/tex/latex/psnfss/ts1phv.fd
+INPUT /opt/texlive/texdir/texmf-dist/fonts/tfm/adobe/helvetic/phvr8c.tfm
 INPUT /opt/texlive/texdir/texmf-dist/fonts/vf/adobe/helvetic/phvr8c.vf
 INPUT cv_investigacion.aux
 INPUT ./cv_investigacion.out

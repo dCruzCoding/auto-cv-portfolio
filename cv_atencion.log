@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.2)  10 DEC 2025 12:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.2)  10 DEC 2025 13:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -729,7 +729,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 65.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 65.
-<foto.png, id=23, 1027.84pt x 1027.84pt>
+<foto.png, id=27, 1027.84pt x 1027.84pt>
 File: foto.png Graphic file (type png)
 <use foto.png>
 Package pdftex.def Info: foto.png  used on input line 73.
@@ -757,13 +757,13 @@ LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
  ***********
 Package rerunfilecheck Info: File `cv_atencion.out' has not changed.
-(rerunfilecheck)             Checksum: 99746A6A4A0B0EBA10C71F816265B8BC;269.
+(rerunfilecheck)             Checksum: 1F2BB90A66B35A6C5181C1756FFEACE1;438.
  ) 
 Here is how much of TeX's memory you used:
- 23652 strings out of 467748
- 450893 string characters out of 5429049
- 823628 words of memory out of 5000000
- 51987 multiletter control sequences out of 15000+600000
+ 23654 strings out of 467748
+ 450913 string characters out of 5429049
+ 826628 words of memory out of 5000000
+ 51988 multiletter control sequences out of 15000+600000
  663990 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,8n,87p,451b,678s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -772,10 +772,10 @@ rands-Regular.pfb></opt/texlive/texdir/texmf-dist/fonts/type1/public/fontawesom
 e5/FontAwesome5Free-Solid.pfb></opt/texlive/texdir/texmf-dist/fonts/type1/urw/h
 elvetic/uhvb8a.pfb></opt/texlive/texdir/texmf-dist/fonts/type1/urw/helvetic/uhv
 r8a.pfb></opt/texlive/texdir/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on cv_atencion.pdf (1 page, 579016 bytes).
+Output written on cv_atencion.pdf (1 page, 582371 bytes).
 PDF statistics:
- 68 PDF objects out of 1000 (max. 8388607)
- 51 compressed objects within 1 object stream
- 5 named destinations out of 1000 (max. 500000)
- 42 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 72 PDF objects out of 1000 (max. 8388607)
+ 55 compressed objects within 1 object stream
+ 6 named destinations out of 1000 (max. 500000)
+ 50 words of extra memory for PDF output out of 10000 (max. 10000000)
 
