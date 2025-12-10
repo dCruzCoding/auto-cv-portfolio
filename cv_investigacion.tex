@@ -3,20 +3,19 @@
 % --- PAQUETES DE DISEÑO ---
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[default]{lato} % Fuente moderna sans-serif
-\usepackage[margin=1.25cm]{geometry} % Márgenes aprovechados
+\usepackage[default]{lato} 
+\usepackage[margin=1.25cm]{geometry} 
 \usepackage{xcolor}
 \usepackage{hyperref}
-\usepackage{fontawesome5} % Para los iconos (LinkedIn, Mail...)
+\usepackage{fontawesome5} 
 \usepackage{titlesec}
 \usepackage{enumitem}
 
-% --- COLORES (Personalizables) ---
-\definecolor{primary}{RGB}{40, 100, 160} % Azul oscuro profesional
-\definecolor{secondary}{RGB}{80, 80, 80} % Gris oscuro
+% --- COLORES ---
+\definecolor{primary}{RGB}{40, 100, 160} 
+\definecolor{secondary}{RGB}{80, 80, 80} 
 
 % --- ESTILO DE TÍTULOS ---
-% Título de sección con línea debajo
 \titleformat{\section}
 {\Large\bfseries\color{primary}}
 {}{0em}
@@ -31,10 +30,13 @@
 
 % === CABECERA ===
 \begin{center}
+    % APLICAMOS escape_tex AL NOMBRE Y TÍTULO
     {\Huge \textbf{Tu Nombre Completo}} \\ \vspace{0.2cm}
     {\Large \textcolor{secondary}{Perfil Multidisciplinar}} \\ \vspace{0.2cm}
     
-    % Iconos de contacto (usamos condicionales por si algún dato falta)
+    % Iconos de contacto
+    % NOTA: En los enlaces (\href), el primer argumento es la URL (mejor no escapar salvo que de error),
+    % el segundo argumento es el texto visible (SÍ hay que escapar).
     \small
             \faEnvelope \ \href{mailto:hola@tudominio.com}{hola@tudominio.com} \quad | \quad
                 \faLinkedin \ \href{https://linkedin.com/in/tuusuario}{LinkedIn} \quad | \quad
@@ -46,12 +48,14 @@
 
 % === PERFIL ===
 \section*{Perfil}
+% Aquí aplicamos el filtro al texto del perfil
 Profesional híbrido con experiencia en desarrollo backend e investigación en psicología. Apasionado por la intersección entre datos, conducta humana y tecnología.
 
 % === EXPERIENCIA ===
 \section*{Experiencia Laboral}
 \begin{itemize}[leftmargin=0cm, label={}]
         \item 
+        % Aplicamos filtro a puesto, fecha, empresa, ubicación y descripción
         \textbf{\large Investigador Predoctoral} \hfill \textbf{2018 - 2021} \\
         \textcolor{primary}{\textit{Universidad Complutense}} \ \textbullet \ \textit{Madrid, España} \\
         \vspace{0.05cm}
@@ -60,7 +64,6 @@ Profesional híbrido con experiencia en desarrollo backend e investigación en p
     \end{itemize}
 
 % === FORMACIÓN ===
-% Solo mostramos la sección si hay datos en la lista filtrada
 \section*{Formación Académica}
 \begin{itemize}[leftmargin=0cm, label={}]
         \item 
@@ -77,10 +80,12 @@ Profesional híbrido con experiencia en desarrollo backend e investigación en p
 \section*{Habilidades y Herramientas}
 \begin{itemize}[leftmargin=0cm, label={}]
     \item 
-            \colorbox{primary!10}{\textcolor{black}{\textbf{Python / Django}}} \quad
-            \colorbox{primary!10}{\textcolor{black}{\textbf{Análisis de Datos (SPSS/R)}}} \quad
-            \colorbox{primary!10}{\textcolor{black}{\textbf{Atención al Cliente}}} \quad
-            \colorbox{primary!10}{\textcolor{black}{\textbf{Git - GitHub}}} \quad
+            % Filtro también aquí por si pones "C++" o "C#"
+        \colorbox{primary!10}{\textcolor{black}{\textbf{Python / Django}}} \quad
+            % Filtro también aquí por si pones "C++" o "C#"
+        \colorbox{primary!10}{\textcolor{black}{\textbf{Análisis de Datos (SPSS/R)}}} \quad
+            % Filtro también aquí por si pones "C++" o "C#"
+        \colorbox{primary!10}{\textcolor{black}{\textbf{Git - GitHub}}} \quad
     \end{itemize}
 
 \end{document}
