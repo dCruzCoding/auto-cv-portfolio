@@ -1,103 +1,169 @@
 \documentclass[a4paper,10pt]{article}
 
-% --- PAQUETES DE DISEÑO ---
+% --- PAQUETES ---
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[default]{lato} 
-\usepackage[margin=1.25cm]{geometry} 
+\usepackage[default]{lato}     % Fuente parecida a la del diseño
+\usepackage[margin=0cm]{geometry} % Sin márgenes, los controlamos nosotros
+\usepackage{paracol}           % Para las dos columnas
 \usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{fontawesome5}
 \usepackage{hyperref}
-\usepackage{fontawesome5} 
-\usepackage{titlesec}
 \usepackage{enumitem}
+\usepackage{setspace}
 
-% --- COLORES ---
-\definecolor{primary}{RGB}{40, 100, 160} 
-\definecolor{secondary}{RGB}{80, 80, 80} 
+% --- COLORES (Copiados de tu snippet) ---
+\definecolor{sidebarbackground}{HTML}{353839} % Gris oscuro
+\definecolor{sidebartext}{HTML}{FFFFFF}       % Texto blanco
+\definecolor{contbackground}{HTML}{DCAE71}    % Dorado
+\definecolor{bodytext}{HTML}{353839}          % Texto gris oscuro cuerpo
+\definecolor{linkcolor}{HTML}{DCAE71}         % Enlaces en dorado
 
-% --- ESTILO DE TÍTULOS ---
-\titleformat{\section}
-{\Large\bfseries\color{primary}}
-{}{0em}
-{}[\titlerule]
-\titlespacing*{\section}{0pt}{1.2em}{0.6em}
+% --- CONFIGURACIÓN DE COLUMNAS ---
+% Relación: 32% Izquierda, 68% Derecha
+\columnratio{0.32}
+\setlength{\columnsep}{0pt}
 
-% --- QUITAR NUMERACIÓN ---
-\pagestyle{empty}
+% --- ESTILOS PERSONALIZADOS ---
+\newcommand{\sidebarsection}[1]{
+    \vspace{0.5cm}
+    {\Large\bfseries\color{contbackground} #1} \\
+    \vspace{0.2cm}
+}
 
-% --- COMIENZO DEL DOCUMENTO ---
+\newcommand{\mainsection}[1]{
+    \vspace{0.6cm}
+    {\LARGE\bfseries\color{sidebarbackground} \MakeUppercase{#1}} \\
+    {\color{contbackground} \rule{\linewidth}{2pt}} \\ % Línea dorada
+    \vspace{0.3cm}
+}
+
+% Quitar indentación
+\setlength{\parindent}{0pt}
+
+% --- DOCUMENTO ---
 \begin{document}
 
-% === CABECERA ===
-\begin{center}
-    % APLICAMOS escape_tex AL NOMBRE Y TÍTULO
-    {\Huge \textbf{\VAR{config.nombre | escape_tex}}} \\ \vspace{0.2cm}
-    {\Large \textcolor{secondary}{\VAR{config.titulo_por_defecto | escape_tex}}} \\ \vspace{0.2cm}
+% Iniciamos entorno de columnas
+% backgroundcolor define el color de fondo de cada columna: [0]=Izquierda, [1]=Derecha
+\backgroundcolor{c[0]({sidebarbackground})} 
+\backgroundcolor{c[1](white)}
+
+\begin{paracol}{2}
+
+% ====================================================================
+% COLUMNA IZQUIERDA (SIDEBAR)
+% ====================================================================
+\switchcolumn[0]
+\color{sidebartext}
+\vspace{1cm} % Margen superior interno
+
+% --- ZONA DE CONTACTO (Margen izquierdo manual) ---
+\begin{minipage}[t]{0.85\linewidth} 
+    \hspace{0.3cm} % Pequeño margen izquierdo
+    \begin{flushleft}
     
-    % Iconos de contacto
-    % NOTA: En los enlaces (\href), el primer argumento es la URL (mejor no escapar salvo que de error),
-    % el segundo argumento es el texto visible (SÍ hay que escapar).
+    % Si quisieras poner foto, iría aquí.
+    % \includegraphics[width=4cm]{foto.jpg}
+    
+    \vspace{0.5cm}
+    
+    % DATOS DE CONTACTO
+    \sidebarsection{Contacto}
+    
     \small
     \BLOCK{ if config.email }
-        \faEnvelope \ \href{mailto:\VAR{config.email}}{\VAR{config.email | escape_tex}} \quad | \quad
+        \faEnvelope \hspace{2mm} \href{mailto:\VAR{config.email}}{\textcolor{white}{\VAR{config.email | escape_tex}}} \\ \vspace{0.2cm}
     \BLOCK{ endif }
+    
+    \BLOCK{ if config.telefono }
+        \faPhone \hspace{2mm} \VAR{config.telefono | escape_tex} \\ \vspace{0.2cm}
+    \BLOCK{ endif }
+    
     \BLOCK{ if config.linkedin }
-        \faLinkedin \ \href{https://\VAR{config.linkedin}}{LinkedIn} \quad | \quad
+        \faLinkedin \hspace{2mm} \href{https://\VAR{config.linkedin}}{\textcolor{white}{LinkedIn}} \\ \vspace{0.2cm}
     \BLOCK{ endif }
+    
     \BLOCK{ if config.github }
-        \faGithub \ \href{https://\VAR{config.github}}{GitHub} \quad | \quad
+        \faGithub \hspace{2mm} \href{https://\VAR{config.github}}{\textcolor{white}{GitHub}} \\ \vspace{0.2cm}
     \BLOCK{ endif }
+    
     \BLOCK{ if config.web }
-        \faGlobe \ \href{https://\VAR{config.web}}{Portfolio}
+        \faGlobe \hspace{2mm} \href{https://\VAR{config.web}}{\textcolor{white}{Portfolio Web}} \\ \vspace{0.2cm}
     \BLOCK{ endif }
-\end{center}
 
-\vspace{0.3cm}
+    % FORMACIÓN (La ponemos en la barra lateral para aprovechar espacio)
+    \BLOCK{ if formacion }
+        \sidebarsection{Formación}
+        \BLOCK{ for item in formacion }
+            \textbf{\VAR{item.titulo | escape_tex}} \\
+            {\footnotesize \color{contbackground} \VAR{item.fecha | escape_tex}} \\
+            {\footnotesize \textit{\VAR{item.centro | escape_tex}}} \\
+            \vspace{0.3cm}
+        \BLOCK{ endfor }
+    \BLOCK{ endif }
 
-% === PERFIL ===
-\BLOCK{ if config.perfil }
-\section*{Perfil}
-% Aquí aplicamos el filtro al texto del perfil
-\VAR{config.perfil | escape_tex}
-\BLOCK{ endif }
+    % HABILIDADES (Formato lista simple)
+    \BLOCK{ if habilidades }
+        \sidebarsection{Skills}
+        \begin{itemize}[leftmargin=0.4cm, label={\color{contbackground}\small\faCircle}]
+            \BLOCK{ for item in habilidades }
+                \item \VAR{item.nombre | escape_tex}
+            \BLOCK{ endfor }
+        \end{itemize}
+    \BLOCK{ endif }
 
-% === EXPERIENCIA ===
-\section*{Experiencia Laboral}
-\begin{itemize}[leftmargin=0cm, label={}]
-    \BLOCK{ for item in experiencia }
-    \item 
-        % Aplicamos filtro a puesto, fecha, empresa, ubicación y descripción
-        \textbf{\large \VAR{item.puesto | escape_tex}} \hfill \textbf{\VAR{item.fecha | escape_tex}} \\
-        \textcolor{primary}{\textit{\VAR{item.empresa | escape_tex}}} \ \textbullet \ \textit{\VAR{item.ubicacion | escape_tex}} \\
-        \vspace{0.05cm}
-        \VAR{item.descripcion | escape_tex}
-        \vspace{0.3cm}
-    \BLOCK{ endfor }
-\end{itemize}
+    \end{flushleft}
+\end{minipage}
 
-% === FORMACIÓN ===
-\BLOCK{ if formacion }
-\section*{Formación Académica}
-\begin{itemize}[leftmargin=0cm, label={}]
-    \BLOCK{ for item in formacion }
-    \item 
-        \textbf{\VAR{item.titulo | escape_tex}} \hfill \VAR{item.fecha | escape_tex} \\
-        \textit{\VAR{item.centro | escape_tex}}
-        \vspace{0.15cm}
-    \BLOCK{ endfor }
-\end{itemize}
-\BLOCK{ endif }
+\vspace{50cm} % Truco sucio para forzar que el gris llegue hasta abajo si el contenido es corto
 
-% === HABILIDADES ===
-\BLOCK{ if habilidades }
-\section*{Habilidades y Herramientas}
-\begin{itemize}[leftmargin=0cm, label={}]
-    \item 
-    \BLOCK{ for item in habilidades }
-        % Filtro también aquí por si pones "C++" o "C#"
-        \colorbox{primary!10}{\textcolor{black}{\textbf{\VAR{item.nombre | escape_tex}}}} \quad
-    \BLOCK{ endfor }
-\end{itemize}
-\BLOCK{ endif }
+% ====================================================================
+% COLUMNA DERECHA (PRINCIPAL)
+% ====================================================================
+\switchcolumn[1]
+\color{bodytext}
+\vspace{1cm}
 
+\begin{minipage}[t]{0.92\linewidth} % Contenedor con márgenes
+
+    % --- CABECERA (NOMBRE Y TÍTULO) ---
+    {\Huge \bfseries \MakeUppercase{\VAR{config.nombre | escape_tex}}} \\
+    \vspace{0.2cm}
+    {\Large \color{contbackground} \VAR{config.titulo_por_defecto | escape_tex}} 
+    \vspace{0.5cm}
+
+    % --- PERFIL ---
+    \BLOCK{ if config.perfil }
+    \mainsection{Perfil}
+    \large \VAR{config.perfil | escape_tex}
+    \vspace{0.3cm}
+    \BLOCK{ endif }
+
+    % --- EXPERIENCIA ---
+    \mainsection{Experiencia}
+    
+    \begin{itemize}[leftmargin=0cm, label={}]
+        \BLOCK{ for item in experiencia }
+        \item 
+            % Encabezado de la experiencia
+            {\large \textbf{\VAR{item.puesto | escape_tex}}} 
+            \hfill 
+            {\color{sidebarbackground} \textbf{\small \VAR{item.fecha | escape_tex}}} \\
+            
+            {\color{contbackground} \textbf{\VAR{item.empresa | escape_tex}}} 
+            \ \textbullet \ 
+            {\small \textit{\VAR{item.ubicacion | escape_tex}}} \\
+            
+            \vspace{0.1cm}
+            % Descripción
+            {\small \VAR{item.descripcion | escape_tex}}
+            \vspace{0.5cm}
+        \BLOCK{ endfor }
+    \end{itemize}
+
+\end{minipage}
+
+\end{paracol}
 \end{document}
