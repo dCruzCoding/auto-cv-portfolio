@@ -178,13 +178,15 @@
 \BLOCK{ for item in formacion_it }
     \noindent
     \begin{minipage}[t]{1.0\linewidth}
+        % Título - Centro (Gris) -----------------------------> Fecha
         {\textbf{\VAR{item.titulo | escape_tex}}} 
-        \hfill 
-        {\small \VAR{item.fecha | escape_tex}} \\
+        \ \textendash \ 
         {\color{detailgray}\textit{\VAR{item.centro | escape_tex}}}
+        \hfill 
+        {\small \VAR{item.fecha | escape_tex}}
     \end{minipage}
     \par 
-    \vspace{0.2cm} 
+    \vspace{0.1cm} % Reducido un poco el espacio al ser línea simple
 \BLOCK{ endfor }
 \BLOCK{ endif }
 
@@ -192,17 +194,19 @@
 % NUEVO: CURSOS
 % =============================================================================
 \BLOCK{ if cursos }
-\section{Cursos y Certificaciones}
+\section{Cursos}
 \BLOCK{ for item in cursos }
     \noindent
     \begin{minipage}[t]{1.0\linewidth}
+        % Título - Centro (Gris) -----------------------------> Fecha
         {\textbf{\VAR{item.titulo | escape_tex}}} 
-        \hfill 
-        {\small \VAR{item.fecha | escape_tex}} \\
+        \ \textendash \ 
         {\color{detailgray}\textit{\VAR{item.centro | escape_tex}}}
+        \hfill 
+        {\small \VAR{item.fecha | escape_tex}}
     \end{minipage}
     \par 
-    \vspace{0.2cm} 
+    \vspace{0.1cm} 
 \BLOCK{ endfor }
 \BLOCK{ endif }
 
