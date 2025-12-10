@@ -1,5 +1,6 @@
 import yaml
 import os
+import shutil
 from jinja2 import Environment, FileSystemLoader
 
 # 1. Cargar datos
@@ -7,8 +8,6 @@ with open('data/info.yaml', 'r', encoding='utf-8') as f:
     yaml_content = f.read()
 
 # --- ZONA DE SUSTITUCIÓN DE SECRETOS ---
-# Buscamos la palabra clave en el texto y la cambiamos por la variable de entorno.
-
 # Reemplazar teléfono
 telefono_real = os.environ.get('MY_PHONE', 'Teléfono no disponible') 
 yaml_content = yaml_content.replace('SECRET_PHONE', telefono_real)
@@ -19,6 +18,21 @@ data = yaml.safe_load(yaml_content)
 
 # Asegurar que existe carpeta output
 os.makedirs('output', exist_ok=True)
+
+# ---------------------------------------------------------
+# COPIAR LA FOTO 📸
+# ---------------------------------------------------------
+if 'config' in data and 'foto' in data['config'] and data['config']['foto']:
+    nombre_foto = data['config']['foto']
+    ruta_origen = os.path.join('data', nombre_foto)
+    ruta_destino = os.path.join('output', nombre_foto)
+    
+    # Solo copiamos si el archivo existe en 'data/'
+    if os.path.exists(ruta_origen):
+        shutil.copy(ruta_origen, ruta_destino)
+        print(f"📸 Foto '{nombre_foto}' copiada a la carpeta output.")
+    else:
+        print(f"⚠️ ADVERTENCIA: En el YAML pides '{nombre_foto}', pero no está en la carpeta data/.")
 
 # ---------------------------------------------------------
 # CONFIGURACIÓN PARA HTML (Jinja estándar: {{ variable }})
@@ -34,7 +48,6 @@ print("✅ HTML generado correctamente.")
 
 # ---------------------------------------------------------
 # CONFIGURACIÓN PARA LATEX (Jinja modificado)
-# Cambiamos {{ }} por \VAR{ } para no romper LaTeX
 # ---------------------------------------------------------
 env_latex = Environment(
     loader=FileSystemLoader('templates'),
@@ -71,6 +84,7 @@ def escape_latex(text):
 
 # Registrar el filtro
 env_latex.filters['escape_tex'] = escape_latex
+env_latex.filters['upper'] = lambda x: x.upper() if isinstance(x, str) else x
 
 template_latex = env_latex.get_template('cv_template.tex')
 
