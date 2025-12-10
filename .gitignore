@@ -9,7 +9,6 @@ env/
 # la creará automáticamente en GitHub Actions.
 output/
 datos/
-data/info.yaml
 
 # --- Archivos temporales de LaTeX ---
 # (Por si compilas en local alguna vez)

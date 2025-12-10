@@ -1,0 +1,53 @@
+config:
+  nombre: "Tu Nombre Completo"
+  titulo_por_defecto: "Perfil Multidisciplinar"
+  email: "hola@tudominio.com"
+  telefono: "SECRET_PHONE"
+  linkedin: "linkedin.com/in/tuusuario"
+  github: "github.com/tuusuario"
+  web: "tu-portfolio.github.io"
+  # Un resumen breve que aparecerá arriba
+  perfil: "Profesional híbrido con experiencia en desarrollo backend e investigación en psicología. Apasionado por la intersección entre datos, conducta humana y tecnología."
+
+experiencia:
+  - puesto: "Backend Developer"
+    empresa: "Tech Solutions S.L."
+    fecha: "2021 - Presente"
+    ubicacion: "Madrid, España"
+    tags: ["programacion"]
+    descripcion: "Desarrollo de microservicios con Python y FastAPI. Optimización de consultas SQL."
+
+  - puesto: "Investigador Predoctoral"
+    empresa: "Universidad Complutense"
+    fecha: "2018 - 2021"
+    ubicacion: "Madrid, España"
+    tags: ["investigacion", "psicologia"]
+    descripcion: "Diseño experimental y análisis estadístico avanzado (SPSS, R) en psicología cognitiva."
+
+  - puesto: "Soporte Técnico"
+    empresa: "HelpDesk Corp"
+    fecha: "2016 - 2018"
+    ubicacion: "Remoto"
+    tags: ["atencion_cliente", "programacion"]
+    descripcion: "Resolución de incidencias de nivel 2 y trato directo con clientes internacionales."
+
+formacion:
+  - titulo: "Grado en Psicología"
+    centro: "Universidad X"
+    fecha: "2014 - 2018"
+    tags: ["psicologia", "investigacion", "general"]
+  
+  - titulo: "Bootcamp Full Stack Web"
+    centro: "Code School Y"
+    fecha: "2020"
+    tags: ["programacion", "general"]
+
+habilidades:
+  - nombre: "Python / Django"
+    tags: ["programacion", "investigacion"]
+  - nombre: "Análisis de Datos (SPSS/R)"
+    tags: ["investigacion", "psicologia"]
+  - nombre: "Atención al Cliente"
+    tags: ["atencion_cliente"]
+  - nombre: "Git - GitHub"
+    tags: ["programacion", "general"]
