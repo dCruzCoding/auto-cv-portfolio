@@ -3,25 +3,25 @@
 % --- PAQUETES ---
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[default]{lato}     % Fuente parecida a la del diseño
-\usepackage[margin=0cm]{geometry} % Sin márgenes, los controlamos nosotros
-\usepackage{paracol}           % Para las dos columnas
-\usepackage{xcolor}
+\usepackage{helvet}            % USAMOS HELVETICA (Más seguro que Lato)
+\renewcommand{\familydefault}{\sfdefault} % La establecemos por defecto
+\usepackage[margin=0cm]{geometry} 
+\usepackage{paracol}           
+\usepackage[table]{xcolor}     % Añadimos opción 'table' por si acaso
 \usepackage{tikz}
 \usepackage{fontawesome5}
 \usepackage{hyperref}
 \usepackage{enumitem}
 \usepackage{setspace}
 
-% --- COLORES (Copiados de tu snippet) ---
-\definecolor{sidebarbackground}{HTML}{353839} % Gris oscuro
-\definecolor{sidebartext}{HTML}{FFFFFF}       % Texto blanco
-\definecolor{contbackground}{HTML}{DCAE71}    % Dorado
-\definecolor{bodytext}{HTML}{353839}          % Texto gris oscuro cuerpo
-\definecolor{linkcolor}{HTML}{DCAE71}         % Enlaces en dorado
+% --- COLORES ---
+\definecolor{sidebarbackground}{HTML}{353839} 
+\definecolor{sidebartext}{HTML}{FFFFFF}       
+\definecolor{contbackground}{HTML}{DCAE71}    
+\definecolor{bodytext}{HTML}{353839}          
+\definecolor{linkcolor}{HTML}{DCAE71}         
 
 % --- CONFIGURACIÓN DE COLUMNAS ---
-% Relación: 32% Izquierda, 68% Derecha
 \columnratio{0.32}
 \setlength{\columnsep}{0pt}
 
@@ -35,7 +35,7 @@
 \newcommand{\mainsection}[1]{
     \vspace{0.6cm}
     {\LARGE\bfseries\color{sidebarbackground} \MakeUppercase{#1}} \\
-    {\color{contbackground} \rule{\linewidth}{2pt}} \\ % Línea dorada
+    {\color{contbackground} \rule{\linewidth}{2pt}} \\ 
     \vspace{0.3cm}
 }
 
@@ -45,9 +45,9 @@
 % --- DOCUMENTO ---
 \begin{document}
 
-% Iniciamos entorno de columnas
-% backgroundcolor define el color de fondo de cada columna: [0]=Izquierda, [1]=Derecha
-\backgroundcolor{c[0]({sidebarbackground})} 
+% --- CORRECCIÓN CRÍTICA AQUÍ ---
+% Quitamos las llaves internas {} que causaban el error
+\backgroundcolor{c[0](sidebarbackground)} 
 \backgroundcolor{c[1](white)}
 
 \begin{paracol}{2}
@@ -57,19 +57,13 @@
 % ====================================================================
 \switchcolumn[0]
 \color{sidebartext}
-\vspace{1cm} % Margen superior interno
+\vspace{1cm} 
 
-% --- ZONA DE CONTACTO (Margen izquierdo manual) ---
 \begin{minipage}[t]{0.85\linewidth} 
-    \hspace{0.3cm} % Pequeño margen izquierdo
+    \hspace{0.3cm} 
     \begin{flushleft}
     
-    % Si quisieras poner foto, iría aquí.
-    % \includegraphics[width=4cm]{foto.jpg}
-    
-    \vspace{0.5cm}
-    
-    % DATOS DE CONTACTO
+    % CONTACTO
     \sidebarsection{Contacto}
     
     \small
@@ -90,10 +84,10 @@
     \BLOCK{ endif }
     
     \BLOCK{ if config.web }
-        \faGlobe \hspace{2mm} \href{https://\VAR{config.web}}{\textcolor{white}{Portfolio Web}} \\ \vspace{0.2cm}
+        \faGlobe \hspace{2mm} \href{https://\VAR{config.web}}{\textcolor{white}{Portfolio}} \\ \vspace{0.2cm}
     \BLOCK{ endif }
 
-    % FORMACIÓN (La ponemos en la barra lateral para aprovechar espacio)
+    % FORMACIÓN
     \BLOCK{ if formacion }
         \sidebarsection{Formación}
         \BLOCK{ for item in formacion }
@@ -104,7 +98,7 @@
         \BLOCK{ endfor }
     \BLOCK{ endif }
 
-    % HABILIDADES (Formato lista simple)
+    % HABILIDADES
     \BLOCK{ if habilidades }
         \sidebarsection{Skills}
         \begin{itemize}[leftmargin=0.4cm, label={\color{contbackground}\small\faCircle}]
@@ -116,8 +110,7 @@
 
     \end{flushleft}
 \end{minipage}
-
-\vspace{50cm} % Truco sucio para forzar que el gris llegue hasta abajo si el contenido es corto
+\vspace{20cm} 
 
 % ====================================================================
 % COLUMNA DERECHA (PRINCIPAL)
@@ -126,28 +119,27 @@
 \color{bodytext}
 \vspace{1cm}
 
-\begin{minipage}[t]{0.92\linewidth} % Contenedor con márgenes
+\begin{minipage}[t]{0.92\linewidth} 
 
-    % --- CABECERA (NOMBRE Y TÍTULO) ---
+    % CABECERA
     {\Huge \bfseries \MakeUppercase{\VAR{config.nombre | escape_tex}}} \\
     \vspace{0.2cm}
     {\Large \color{contbackground} \VAR{config.titulo_por_defecto | escape_tex}} 
     \vspace{0.5cm}
 
-    % --- PERFIL ---
+    % PERFIL
     \BLOCK{ if config.perfil }
     \mainsection{Perfil}
     \large \VAR{config.perfil | escape_tex}
     \vspace{0.3cm}
     \BLOCK{ endif }
 
-    % --- EXPERIENCIA ---
+    % EXPERIENCIA
     \mainsection{Experiencia}
     
     \begin{itemize}[leftmargin=0cm, label={}]
         \BLOCK{ for item in experiencia }
         \item 
-            % Encabezado de la experiencia
             {\large \textbf{\VAR{item.puesto | escape_tex}}} 
             \hfill 
             {\color{sidebarbackground} \textbf{\small \VAR{item.fecha | escape_tex}}} \\
@@ -157,7 +149,6 @@
             {\small \textit{\VAR{item.ubicacion | escape_tex}}} \\
             
             \vspace{0.1cm}
-            % Descripción
             {\small \VAR{item.descripcion | escape_tex}}
             \vspace{0.5cm}
         \BLOCK{ endfor }
