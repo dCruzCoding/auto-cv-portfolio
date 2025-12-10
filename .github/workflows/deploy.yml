@@ -3,7 +3,7 @@ name: Construir Portfolio y CVs
 # Se activa cuando haces un push a la rama 'main'
 on:
   push:
-    branches: [ main ]
+    branches: [ test_dev ]
 
 # Permisos para que el bot pueda publicar en GitHub Pages
 permissions:
