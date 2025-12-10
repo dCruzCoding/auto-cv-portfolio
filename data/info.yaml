@@ -1,46 +1,87 @@
 config:
-  nombre: "Tu Nombre Completo"
+  foto: "foto.png"
+  nombre: "Daniel Cruz Jurado"
   titulo_por_defecto: "Perfil Multidisciplinar"
   email: "hola@tudominio.com"
   telefono: "SECRET_PHONE"
-  linkedin: "linkedin.com/in/tuusuario"
-  github: "github.com/tuusuario"
-  web: "tu-portfolio.github.io"
-  # Un resumen breve que aparecerá arriba
+  linkedin: "linkedin.com/in/danielcruzjurado"
+  github: "github.com/dCruzCoding"
+  web: "dcruzcoding.github.io/auto-cv-portfolio/"
   perfil: "Profesional híbrido con experiencia en desarrollo backend e investigación en psicología. Apasionado por la intersección entre datos, conducta humana y tecnología."
 
 experiencia:
-  - puesto: "Backend Developer"
-    empresa: "Tech Solutions S.L."
-    fecha: "2021 - Presente"
-    ubicacion: "Madrid, España"
+  - puesto: "Analista Programador"
+    empresa: "Accenture 2 Business Process Services, S.A."
+    fecha: "02.2020 - 09.2022"
+    ubicacion: "Lisboa, Portugal"
     tags: ["programacion"]
-    descripcion: "Desarrollo de microservicios con Python y FastAPI. Optimización de consultas SQL."
+    descripcion: "Tratamiento y análisis de datos, desarrollo de soluciones software, soporte a usuarios, resolución de incidencias y formación continua en IoT, Cloud, Machine Learning, IA y Blockchain."
 
-  - puesto: "Investigador Predoctoral"
-    empresa: "Universidad Complutense"
-    fecha: "2018 - 2021"
-    ubicacion: "Madrid, España"
-    tags: ["investigacion", "psicologia"]
-    descripcion: "Diseño experimental y análisis estadístico avanzado (SPSS, R) en psicología cognitiva."
+  - puesto: "Investigador Científico (Prácticas)"
+    empresa: "Universidad de Granada | Universidad de Cádiz"
+    fecha: "2018 - 2019 | 2015 - 2016"
+    ubicacion: "Granada y Cádiz, España"
+    tags: ["investigacion"]
+    descripcion: "Diseño experimental, recolección y tratamiento de datos, atención a participantes, análisis estadístico y redacción de artículos científicos en laboratorios CTS-176 y HUM-843."
 
-  - puesto: "Soporte Técnico"
-    empresa: "HelpDesk Corp"
-    fecha: "2016 - 2018"
-    ubicacion: "Remoto"
-    tags: ["atencion_cliente", "programacion"]
-    descripcion: "Resolución de incidencias de nivel 2 y trato directo con clientes internacionales."
+  - puesto: "Educador Social (Prácticas y Voluntariado)"
+    empresa: "Asociación ADACCA | Asociación EQUA"
+    fecha: "2019 | 2016 - 2017"
+    ubicacion: "Cádiz, España"
+    tags: ["atencion_cliente"]
+    descripcion: "Organización de grupos, apoyo psicológico a personas con daño cerebral adquirido y formación para la inclusión laboral de personas con discapacidad intelectual."
 
 formacion:
+  - titulo: "Máster Experto en Coaching Deportivo"
+    centro: "Esneca Business School"
+    fecha: "2021"
+    tags: []
+
+  - titulo: "Postgrado Experto en Nutrición Deportiva"
+    centro: "Esneca Business School"
+    fecha: "2021"
+    tags: []
+
+  - titulo: "Máster en Neurociencia Cognitiva"
+    centro: "Universidad de Granada (UGR)"
+    fecha: "2018 - 2019"
+    tags: ["investigacion"]
+
   - titulo: "Grado en Psicología"
-    centro: "Universidad X"
-    fecha: "2014 - 2018"
-    tags: ["psicologia", "investigacion", "general"]
-  
-  - titulo: "Bootcamp Full Stack Web"
-    centro: "Code School Y"
-    fecha: "2020"
-    tags: ["programacion", "general"]
+    centro: "Universidad de Cádiz (UCA)"
+    fecha: "2013 - 2017"
+    tags: ["investigacion"]
+
+  - titulo: "Quantum Computing y Ciberseguridad"
+    centro: "Universidad de Deusto"
+    fecha: "2025"
+    tags: ["programacion"]
+
+  - titulo: "Quantum Machine Learning y Optimización"
+    centro: "Universidad de Deusto"
+    fecha: "2025"
+    tags: ["programacion", "investigacion"]
+
+  - titulo: "Google IT Automation with Python"
+    centro: "IBM / Coursera"
+    fecha: "2025"
+    tags: ["programacion"]
+
+  - titulo: "Inteligencia Artificial"
+    centro: "Escuela de Organización Industrial (EOI)"
+    fecha: "2025"
+    tags: ["programacion", "investigacion"]
+
+  - titulo: "Programación, Algoritmos y Estructuras para IA (Python)"
+    centro: "EOI"
+    fecha: "2024"
+    tags: ["programacion", "investigacion"]
+
+  - titulo: "Cloud Computing y Power Platform"
+    centro: "EOI"
+    fecha: "2024"
+    tags: ["programacion"]
+
 
 habilidades:
   - nombre: "Python / Django"
@@ -50,4 +91,4 @@ habilidades:
   - nombre: "Atención al Cliente"
     tags: ["atencion_cliente"]
   - nombre: "Git - GitHub"
-    tags: ["programacion", "general"]
+    tags: ["programacion"]

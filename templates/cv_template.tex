@@ -1,152 +1,187 @@
-\documentclass[a4paper,10pt]{article}
+\documentclass[letterpaper,11pt]{article}
 
 % --- PAQUETES ---
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{helvet}
+\usepackage{helvet}               % Fuente limpia (Helvetica)
 \renewcommand{\familydefault}{\sfdefault}
-\usepackage[margin=0cm]{geometry} % Márgenes a 0 para controlar todo manualmente
-\usepackage[table]{xcolor}
-\usepackage{tikz}
-\usepackage{fontawesome5}
+\usepackage[margin=1.5cm]{geometry} 
+\usepackage{xcolor}
 \usepackage{hyperref}
-\usepackage{enumitem}
+\usepackage{fontawesome5}         
+\usepackage{titlesec}             
+\usepackage{enumitem}             
 \usepackage{setspace}
+\usepackage{graphicx}             % Para la foto
+\usepackage{tikz}                 % Para recortar la foto en círculo
+\usepackage{multicol}             % Por si quieres columnas
 
 % --- COLORES ---
-\definecolor{sidebarbackground}{HTML}{353839}
-\definecolor{sidebartext}{HTML}{FFFFFF}
-\definecolor{contbackground}{HTML}{DCAE71}
-\definecolor{bodytext}{HTML}{353839}
+% "MidnightBlue" aproximado (RGB: 25, 25, 112)
+\definecolor{primary}{RGB}{25, 25, 112} 
+\definecolor{textgray}{RGB}{60, 60, 60}
+\definecolor{detailgray}{RGB}{90, 90, 90}
 
-% --- ESTILOS DE SECCIÓN ---
-\newcommand{\sidebarsection}[1]{
-    \vspace{0.4cm}
-    {\Large\bfseries\color{contbackground} #1} \\
-    \vspace{0.1cm}
-}
+% --- CONFIGURACIÓN DE TÍTULOS ---
+% Estilo SimpleCV: Mayúsculas pequeñas (si la fuente lo soporta) o Mayúsculas, Color, Línea
+\titleformat{\section}
+  {\Large\bfseries\color{primary}} 
+  {}                               
+  {0em}                            
+  {}                               
+  [\color{primary}\titlerule]      
 
-\newcommand{\mainsection}[1]{
-    \vspace{0.5cm}
-    {\LARGE\bfseries\color{sidebarbackground} \MakeUppercase{#1}} \\
-    {\color{contbackground} \rule{\linewidth}{2pt}} \\
-    \vspace{0.2cm}
-}
+\titlespacing*{\section}{0pt}{1.5em}{0.8em}
 
+% --- LISTAS ---
+\setlist[itemize]{leftmargin=*, nosep, noitemsep}
+
+% --- SIN SANGRÍA ---
 \setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
 
 \begin{document}
 
-% -----------------------------------------------------------
-% FONDO DE LA BARRA LATERAL (Dibujado manualmente con TikZ)
-% -----------------------------------------------------------
-% Esto reemplaza al comando \backgroundcolor que daba el Fatal Error
-\begin{tikzpicture}[remember picture,overlay]
-    \fill[sidebarbackground] (current page.north west) rectangle ([xshift=7cm]current page.south west);
-\end{tikzpicture}
+% =============================================================================
+% CABECERA (Lógica con/sin Foto)
+% =============================================================================
 
-% -----------------------------------------------------------
-% MAQUETACIÓN DE COLUMNAS (Usando minipages estándar)
-% -----------------------------------------------------------
-
-% === COLUMNA IZQUIERDA (Gris) ===
-\begin{minipage}[t][\textheight][t]{7cm} % Ancho fijo de 7cm
-    \vspace{1cm} % Margen superior
-    \color{sidebartext}
-    
-    % Contenedor interno para dar margen a la izquierda del texto
-    \hspace{0.5cm}
-    \begin{minipage}[t]{6cm} 
+\BLOCK{ if config.foto }
+    % --- OPCIÓN A: CON FOTO ---
+    \noindent
+    \begin{minipage}[c]{0.73\textwidth}
+        % NOMBRE
+        {\fontsize{30}{36}\selectfont \bfseries \color{primary} \VAR{config.nombre | escape_tex}} \\
+        \vspace{0.1cm}
+        {\Large \color{textgray} \VAR{config.titulo_por_defecto | escape_tex}} \\
+        \vspace{0.3cm}
         
-        % CONTACTO
-        \sidebarsection{Contacto}
+        % DATOS DE CONTACTO (Lista vertical limpia)
         \small
         \BLOCK{ if config.email }
-            \faEnvelope \hspace{2mm} \href{mailto:\VAR{config.email}}{\textcolor{white}{\VAR{config.email | escape_tex}}} \\ \vspace{0.2cm}
+            \faEnvelope \ \href{mailto:\VAR{config.email}}{\VAR{config.email | escape_tex}} \\
         \BLOCK{ endif }
-        
         \BLOCK{ if config.telefono }
-            \faPhone \hspace{2mm} \VAR{config.telefono | escape_tex} \\ \vspace{0.2cm}
+            \faPhone \ \VAR{config.telefono | escape_tex} \\
         \BLOCK{ endif }
-        
-        \BLOCK{ if config.linkedin }
-            \faLinkedin \hspace{2mm} \href{https://\VAR{config.linkedin}}{\textcolor{white}{LinkedIn}} \\ \vspace{0.2cm}
-        \BLOCK{ endif }
-        
-        \BLOCK{ if config.github }
-            \faGithub \hspace{2mm} \href{https://\VAR{config.github}}{\textcolor{white}{GitHub}} \\ \vspace{0.2cm}
-        \BLOCK{ endif }
-        
         \BLOCK{ if config.web }
-            \faGlobe \hspace{2mm} \href{https://\VAR{config.web}}{\textcolor{white}{Portfolio}} \\ \vspace{0.2cm}
+            \faGlobe \ \href{https://\VAR{config.web}}{\VAR{config.web | escape_tex}} \\
         \BLOCK{ endif }
-
-        % FORMACIÓN
-        \BLOCK{ if formacion }
-            \sidebarsection{Formación}
-            \BLOCK{ for item in formacion }
-                \textbf{\VAR{item.titulo | escape_tex}} \\
-                {\footnotesize \color{contbackground} \VAR{item.fecha | escape_tex}} \\
-                {\footnotesize \textit{\VAR{item.centro | escape_tex}}} \\
-                \vspace{0.3cm}
-            \BLOCK{ endfor }
+        \BLOCK{ if config.linkedin }
+            \faLinkedin \ \href{https://\VAR{config.linkedin}}{\VAR{config.linkedin | escape_tex}} \quad
         \BLOCK{ endif }
-
-        % SKILLS
-        \BLOCK{ if habilidades }
-            \sidebarsection{Skills}
-            \begin{itemize}[leftmargin=0.4cm, label={\color{contbackground}\small\faCircle}]
-                \BLOCK{ for item in habilidades }
-                    \item \VAR{item.nombre | escape_tex}
-                \BLOCK{ endfor }
-            \end{itemize}
+        \BLOCK{ if config.github }
+            \faGithub \ \href{https://\VAR{config.github}}{\VAR{config.github | escape_tex}}
         \BLOCK{ endif }
-        
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[c]{0.23\textwidth}
+        \begin{flushright}
+            \begin{tikzpicture}
+                % Recorta la imagen en un círculo
+                \clip (0,0) circle (1.8cm);
+                % Ajusta el nombre de la imagen. IMPORTANTE: La imagen debe estar en la carpeta output o accesible.
+                \node at (0,0) {\includegraphics[width=3.6cm]{\VAR{config.foto}}}; 
+            \end{tikzpicture}
+        \end{flushright}
     \end{minipage}
-\end{minipage}% <--- IMPORTANTE: Este % evita espacios en blanco indeseados
-%
-% === COLUMNA DERECHA (Blanca) ===
-\begin{minipage}[t][\textheight][t]{13cm} % El resto del ancho A4 (aprox)
-    \vspace{1cm}
-    \color{bodytext}
+
+\BLOCK{ else }
+
+    % --- OPCIÓN B: SIN FOTO (Estilo SimpleCV original) ---
+    \noindent
+    \begin{minipage}[t]{0.60\textwidth}
+        \vspace*{\fill}
+        {\fontsize{30}{36}\selectfont \bfseries \color{primary} \VAR{config.nombre | escape_tex}}
+    \end{minipage}%
+    \begin{minipage}[t]{0.39\textwidth}
+        \begin{flushright}
+            \small
+            \BLOCK{ if config.email }
+                \faEnvelope \ \href{mailto:\VAR{config.email}}{\VAR{config.email | escape_tex}} \\
+            \BLOCK{ endif }
+            \BLOCK{ if config.web }
+                \faGlobe \ \href{https://\VAR{config.web}}{\VAR{config.web | escape_tex}} \\
+            \BLOCK{ endif }
+            \BLOCK{ if config.linkedin }
+                \faLinkedin \ \href{https://\VAR{config.linkedin}}{LinkedIn} \\
+            \BLOCK{ endif }
+            \BLOCK{ if config.github }
+                \faGithub \ \href{https://\VAR{config.github}}{GitHub}
+            \BLOCK{ endif }
+        \end{flushright}
+    \end{minipage}
+
+\BLOCK{ endif }
+
+\vspace{0.4cm}
+
+% =============================================================================
+% PERFIL
+% =============================================================================
+\BLOCK{ if config.perfil }
+\section{Perfil}
+\VAR{config.perfil | escape_tex}
+\BLOCK{ endif }
+
+% =============================================================================
+% EXPERIENCIA
+% =============================================================================
+\section{Experiencia}
+
+\BLOCK{ for item in experiencia }
+    % Estilo "EntryBig" del template original
+    \noindent
+    \begin{minipage}[t]{0.99\textwidth}
+        % Fila 1: Puesto y Fechas
+        {\large \textbf{\VAR{item.puesto | escape_tex}}} 
+        \hfill 
+        {\small \textbf{\VAR{item.fecha | escape_tex}}} \\
+        
+        % Fila 2: Empresa y Ubicación (Color detalle)
+        {\color{detailgray}\textit{\VAR{item.empresa | escape_tex}}} 
+        \hfill 
+        {\color{detailgray}\small \textit{\VAR{item.ubicacion | escape_tex}}}
+    \end{minipage}
     
-    % Contenedor interno para margen
-    \hspace{0.5cm}
-    \begin{minipage}[t]{12cm}
+    \vspace{0.1cm}
+    
+    % Descripción
+    {\small \VAR{item.descripcion | escape_tex}}
+    
+    \vspace{0.4cm}
+\BLOCK{ endfor }
 
-        % CABECERA
-        {\Huge \bfseries \MakeUppercase{\VAR{config.nombre | escape_tex}}} \\
-        \vspace{0.2cm}
-        {\Large \color{contbackground} \VAR{config.titulo_por_defecto | escape_tex}} 
-        \vspace{0.5cm}
-
-        % PERFIL
-        \BLOCK{ if config.perfil }
-        \mainsection{Perfil}
-        \large \VAR{config.perfil | escape_tex}
-        \vspace{0.3cm}
-        \BLOCK{ endif }
-
-        % EXPERIENCIA
-        \mainsection{Experiencia}
-        \begin{itemize}[leftmargin=0cm, label={}]
-            \BLOCK{ for item in experiencia }
-            \item 
-                {\large \textbf{\VAR{item.puesto | escape_tex}}} 
-                \hfill 
-                {\color{sidebarbackground} \textbf{\small \VAR{item.fecha | escape_tex}}} \\
-                
-                {\color{contbackground} \textbf{\VAR{item.empresa | escape_tex}}} 
-                \ \textbullet \ 
-                {\small \textit{\VAR{item.ubicacion | escape_tex}}} \\
-                
-                \vspace{0.1cm}
-                {\small \VAR{item.descripcion | escape_tex}}
-                \vspace{0.5cm}
-            \BLOCK{ endfor }
-        \end{itemize}
-        
+% =============================================================================
+% FORMACIÓN
+% =============================================================================
+\BLOCK{ if formacion }
+\section{Formación}
+\BLOCK{ for item in formacion }
+    \noindent
+    \begin{minipage}[t]{1.0\linewidth}
+        {\textbf{\VAR{item.titulo | escape_tex}}} 
+        \hfill 
+        {\small \VAR{item.fecha | escape_tex}} \\
+        {\color{detailgray}\textit{\VAR{item.centro | escape_tex}}}
     \end{minipage}
-\end{minipage}
+    \par % <--- ESTE ES EL TRUCO: Fuerza el salto de línea real
+    \vspace{0.2cm} % Espacio vertical entre items
+\BLOCK{ endfor }
+\BLOCK{ endif }
+
+% =============================================================================
+% HABILIDADES (Estilo Side-by-Side o Lista compacta)
+% =============================================================================
+\BLOCK{ if habilidades }
+\section{Habilidades}
+% Usamos itemize con 2 columnas si hay muchas, o simple si hay pocas.
+% Aquí usamos una lista inline separada por bullets para mantenerlo limpio.
+\noindent
+\BLOCK{ for item in habilidades }
+    \textbf{\VAR{item.nombre | escape_tex}} 
+    \BLOCK{ if not loop.last } \quad \textbullet \quad \BLOCK{ endif }
+\BLOCK{ endfor }
+\BLOCK{ endif }
 
 \end{document}
