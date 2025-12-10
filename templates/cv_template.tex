@@ -3,11 +3,10 @@
 % --- PAQUETES ---
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{helvet}            % USAMOS HELVETICA (Más seguro que Lato)
-\renewcommand{\familydefault}{\sfdefault} % La establecemos por defecto
-\usepackage[margin=0cm]{geometry} 
-\usepackage{paracol}           
-\usepackage[table]{xcolor}     % Añadimos opción 'table' por si acaso
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[margin=0cm]{geometry} % Márgenes a 0 para controlar todo manualmente
+\usepackage[table]{xcolor}
 \usepackage{tikz}
 \usepackage{fontawesome5}
 \usepackage{hyperref}
@@ -15,146 +14,139 @@
 \usepackage{setspace}
 
 % --- COLORES ---
-\definecolor{sidebarbackground}{HTML}{353839} 
-\definecolor{sidebartext}{HTML}{FFFFFF}       
-\definecolor{contbackground}{HTML}{DCAE71}    
-\definecolor{bodytext}{HTML}{353839}          
-\definecolor{linkcolor}{HTML}{DCAE71}         
+\definecolor{sidebarbackground}{HTML}{353839}
+\definecolor{sidebartext}{HTML}{FFFFFF}
+\definecolor{contbackground}{HTML}{DCAE71}
+\definecolor{bodytext}{HTML}{353839}
 
-% --- CONFIGURACIÓN DE COLUMNAS ---
-\columnratio{0.32}
-\setlength{\columnsep}{0pt}
-
-% --- ESTILOS PERSONALIZADOS ---
+% --- ESTILOS DE SECCIÓN ---
 \newcommand{\sidebarsection}[1]{
-    \vspace{0.5cm}
+    \vspace{0.4cm}
     {\Large\bfseries\color{contbackground} #1} \\
-    \vspace{0.2cm}
+    \vspace{0.1cm}
 }
 
 \newcommand{\mainsection}[1]{
-    \vspace{0.6cm}
+    \vspace{0.5cm}
     {\LARGE\bfseries\color{sidebarbackground} \MakeUppercase{#1}} \\
-    {\color{contbackground} \rule{\linewidth}{2pt}} \\ 
-    \vspace{0.3cm}
+    {\color{contbackground} \rule{\linewidth}{2pt}} \\
+    \vspace{0.2cm}
 }
 
-% Quitar indentación
 \setlength{\parindent}{0pt}
 
-% --- DOCUMENTO ---
 \begin{document}
 
-% --- CORRECCIÓN CRÍTICA AQUÍ ---
-% Quitamos las llaves internas {} que causaban el error
-\backgroundcolor{c[0](sidebarbackground)} 
-\backgroundcolor{c[1](white)}
+% -----------------------------------------------------------
+% FONDO DE LA BARRA LATERAL (Dibujado manualmente con TikZ)
+% -----------------------------------------------------------
+% Esto reemplaza al comando \backgroundcolor que daba el Fatal Error
+\begin{tikzpicture}[remember picture,overlay]
+    \fill[sidebarbackground] (current page.north west) rectangle ([xshift=7cm]current page.south west);
+\end{tikzpicture}
 
-\begin{paracol}{2}
+% -----------------------------------------------------------
+% MAQUETACIÓN DE COLUMNAS (Usando minipages estándar)
+% -----------------------------------------------------------
 
-% ====================================================================
-% COLUMNA IZQUIERDA (SIDEBAR)
-% ====================================================================
-\switchcolumn[0]
-\color{sidebartext}
-\vspace{1cm} 
+% === COLUMNA IZQUIERDA (Gris) ===
+\begin{minipage}[t][\textheight][t]{7cm} % Ancho fijo de 7cm
+    \vspace{1cm} % Margen superior
+    \color{sidebartext}
+    
+    % Contenedor interno para dar margen a la izquierda del texto
+    \hspace{0.5cm}
+    \begin{minipage}[t]{6cm} 
+        
+        % CONTACTO
+        \sidebarsection{Contacto}
+        \small
+        \BLOCK{ if config.email }
+            \faEnvelope \hspace{2mm} \href{mailto:\VAR{config.email}}{\textcolor{white}{\VAR{config.email | escape_tex}}} \\ \vspace{0.2cm}
+        \BLOCK{ endif }
+        
+        \BLOCK{ if config.telefono }
+            \faPhone \hspace{2mm} \VAR{config.telefono | escape_tex} \\ \vspace{0.2cm}
+        \BLOCK{ endif }
+        
+        \BLOCK{ if config.linkedin }
+            \faLinkedin \hspace{2mm} \href{https://\VAR{config.linkedin}}{\textcolor{white}{LinkedIn}} \\ \vspace{0.2cm}
+        \BLOCK{ endif }
+        
+        \BLOCK{ if config.github }
+            \faGithub \hspace{2mm} \href{https://\VAR{config.github}}{\textcolor{white}{GitHub}} \\ \vspace{0.2cm}
+        \BLOCK{ endif }
+        
+        \BLOCK{ if config.web }
+            \faGlobe \hspace{2mm} \href{https://\VAR{config.web}}{\textcolor{white}{Portfolio}} \\ \vspace{0.2cm}
+        \BLOCK{ endif }
 
-\begin{minipage}[t]{0.85\linewidth} 
-    \hspace{0.3cm} 
-    \begin{flushleft}
-    
-    % CONTACTO
-    \sidebarsection{Contacto}
-    
-    \small
-    \BLOCK{ if config.email }
-        \faEnvelope \hspace{2mm} \href{mailto:\VAR{config.email}}{\textcolor{white}{\VAR{config.email | escape_tex}}} \\ \vspace{0.2cm}
-    \BLOCK{ endif }
-    
-    \BLOCK{ if config.telefono }
-        \faPhone \hspace{2mm} \VAR{config.telefono | escape_tex} \\ \vspace{0.2cm}
-    \BLOCK{ endif }
-    
-    \BLOCK{ if config.linkedin }
-        \faLinkedin \hspace{2mm} \href{https://\VAR{config.linkedin}}{\textcolor{white}{LinkedIn}} \\ \vspace{0.2cm}
-    \BLOCK{ endif }
-    
-    \BLOCK{ if config.github }
-        \faGithub \hspace{2mm} \href{https://\VAR{config.github}}{\textcolor{white}{GitHub}} \\ \vspace{0.2cm}
-    \BLOCK{ endif }
-    
-    \BLOCK{ if config.web }
-        \faGlobe \hspace{2mm} \href{https://\VAR{config.web}}{\textcolor{white}{Portfolio}} \\ \vspace{0.2cm}
-    \BLOCK{ endif }
+        % FORMACIÓN
+        \BLOCK{ if formacion }
+            \sidebarsection{Formación}
+            \BLOCK{ for item in formacion }
+                \textbf{\VAR{item.titulo | escape_tex}} \\
+                {\footnotesize \color{contbackground} \VAR{item.fecha | escape_tex}} \\
+                {\footnotesize \textit{\VAR{item.centro | escape_tex}}} \\
+                \vspace{0.3cm}
+            \BLOCK{ endfor }
+        \BLOCK{ endif }
 
-    % FORMACIÓN
-    \BLOCK{ if formacion }
-        \sidebarsection{Formación}
-        \BLOCK{ for item in formacion }
-            \textbf{\VAR{item.titulo | escape_tex}} \\
-            {\footnotesize \color{contbackground} \VAR{item.fecha | escape_tex}} \\
-            {\footnotesize \textit{\VAR{item.centro | escape_tex}}} \\
-            \vspace{0.3cm}
-        \BLOCK{ endfor }
-    \BLOCK{ endif }
+        % SKILLS
+        \BLOCK{ if habilidades }
+            \sidebarsection{Skills}
+            \begin{itemize}[leftmargin=0.4cm, label={\color{contbackground}\small\faCircle}]
+                \BLOCK{ for item in habilidades }
+                    \item \VAR{item.nombre | escape_tex}
+                \BLOCK{ endfor }
+            \end{itemize}
+        \BLOCK{ endif }
+        
+    \end{minipage}
+\end{minipage}% <--- IMPORTANTE: Este % evita espacios en blanco indeseados
+%
+% === COLUMNA DERECHA (Blanca) ===
+\begin{minipage}[t][\textheight][t]{13cm} % El resto del ancho A4 (aprox)
+    \vspace{1cm}
+    \color{bodytext}
+    
+    % Contenedor interno para margen
+    \hspace{0.5cm}
+    \begin{minipage}[t]{12cm}
 
-    % HABILIDADES
-    \BLOCK{ if habilidades }
-        \sidebarsection{Skills}
-        \begin{itemize}[leftmargin=0.4cm, label={\color{contbackground}\small\faCircle}]
-            \BLOCK{ for item in habilidades }
-                \item \VAR{item.nombre | escape_tex}
+        % CABECERA
+        {\Huge \bfseries \MakeUppercase{\VAR{config.nombre | escape_tex}}} \\
+        \vspace{0.2cm}
+        {\Large \color{contbackground} \VAR{config.titulo_por_defecto | escape_tex}} 
+        \vspace{0.5cm}
+
+        % PERFIL
+        \BLOCK{ if config.perfil }
+        \mainsection{Perfil}
+        \large \VAR{config.perfil | escape_tex}
+        \vspace{0.3cm}
+        \BLOCK{ endif }
+
+        % EXPERIENCIA
+        \mainsection{Experiencia}
+        \begin{itemize}[leftmargin=0cm, label={}]
+            \BLOCK{ for item in experiencia }
+            \item 
+                {\large \textbf{\VAR{item.puesto | escape_tex}}} 
+                \hfill 
+                {\color{sidebarbackground} \textbf{\small \VAR{item.fecha | escape_tex}}} \\
+                
+                {\color{contbackground} \textbf{\VAR{item.empresa | escape_tex}}} 
+                \ \textbullet \ 
+                {\small \textit{\VAR{item.ubicacion | escape_tex}}} \\
+                
+                \vspace{0.1cm}
+                {\small \VAR{item.descripcion | escape_tex}}
+                \vspace{0.5cm}
             \BLOCK{ endfor }
         \end{itemize}
-    \BLOCK{ endif }
-
-    \end{flushleft}
-\end{minipage}
-\vspace{20cm} 
-
-% ====================================================================
-% COLUMNA DERECHA (PRINCIPAL)
-% ====================================================================
-\switchcolumn[1]
-\color{bodytext}
-\vspace{1cm}
-
-\begin{minipage}[t]{0.92\linewidth} 
-
-    % CABECERA
-    {\Huge \bfseries \MakeUppercase{\VAR{config.nombre | escape_tex}}} \\
-    \vspace{0.2cm}
-    {\Large \color{contbackground} \VAR{config.titulo_por_defecto | escape_tex}} 
-    \vspace{0.5cm}
-
-    % PERFIL
-    \BLOCK{ if config.perfil }
-    \mainsection{Perfil}
-    \large \VAR{config.perfil | escape_tex}
-    \vspace{0.3cm}
-    \BLOCK{ endif }
-
-    % EXPERIENCIA
-    \mainsection{Experiencia}
-    
-    \begin{itemize}[leftmargin=0cm, label={}]
-        \BLOCK{ for item in experiencia }
-        \item 
-            {\large \textbf{\VAR{item.puesto | escape_tex}}} 
-            \hfill 
-            {\color{sidebarbackground} \textbf{\small \VAR{item.fecha | escape_tex}}} \\
-            
-            {\color{contbackground} \textbf{\VAR{item.empresa | escape_tex}}} 
-            \ \textbullet \ 
-            {\small \textit{\VAR{item.ubicacion | escape_tex}}} \\
-            
-            \vspace{0.1cm}
-            {\small \VAR{item.descripcion | escape_tex}}
-            \vspace{0.5cm}
-        \BLOCK{ endfor }
-    \end{itemize}
-
+        
+    \end{minipage}
 \end{minipage}
 
-\end{paracol}
 \end{document}
