@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.2)  10 DEC 2025 13:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.2)  10 DEC 2025 13:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -757,7 +757,7 @@ LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
  ***********
 Package rerunfilecheck Info: File `cv_atencion.out' has not changed.
-(rerunfilecheck)             Checksum: 1F2BB90A66B35A6C5181C1756FFEACE1;438.
+(rerunfilecheck)             Checksum: DDAD17C329A87BC8481189242FFC4FB8;342.
  ) 
 Here is how much of TeX's memory you used:
  23654 strings out of 467748
@@ -772,7 +772,7 @@ rands-Regular.pfb></opt/texlive/texdir/texmf-dist/fonts/type1/public/fontawesom
 e5/FontAwesome5Free-Solid.pfb></opt/texlive/texdir/texmf-dist/fonts/type1/urw/h
 elvetic/uhvb8a.pfb></opt/texlive/texdir/texmf-dist/fonts/type1/urw/helvetic/uhv
 r8a.pfb></opt/texlive/texdir/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on cv_atencion.pdf (1 page, 582371 bytes).
+Output written on cv_atencion.pdf (1 page, 582460 bytes).
 PDF statistics:
  72 PDF objects out of 1000 (max. 8388607)
  55 compressed objects within 1 object stream

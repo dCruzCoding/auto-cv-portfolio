@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.2)  10 DEC 2025 13:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.2)  10 DEC 2025 13:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -754,7 +754,7 @@ fonts/enc/dvips/fontawesome5/fa5free1.enc}{/opt/texlive/texdir/texmf-dist/fonts
 /enc/dvips/fontawesome5/fa5free2.enc}{/opt/texlive/texdir/texmf-dist/fonts/enc/
 dvips/fontawesome5/fa5brands0.enc} <./foto.png>]
 LaTeX Font Info:    Trying to load font information for TS1+phv on input line 2
-24.
+40.
 
 (/opt/texlive/texdir/texmf-dist/tex/latex/psnfss/ts1phv.fd
 File: ts1phv.fd 2020/03/25 scalable font definitions for TS1/phv.
@@ -766,12 +766,12 @@ LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
  ***********
 Package rerunfilecheck Info: File `cv_investigacion.out' has not changed.
-(rerunfilecheck)             Checksum: 0AD79753D1E8ABA776B25BB9800A0BEB;694.
+(rerunfilecheck)             Checksum: 0307FF7B4A1A11A95B853313B965F00A;598.
  ) 
 Here is how much of TeX's memory you used:
  23693 strings out of 467748
  451543 string characters out of 5429049
- 827653 words of memory out of 5000000
+ 828653 words of memory out of 5000000
  52020 multiletter control sequences out of 15000+600000
  664303 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -781,7 +781,7 @@ rands-Regular.pfb></opt/texlive/texdir/texmf-dist/fonts/type1/public/fontawesom
 e5/FontAwesome5Free-Solid.pfb></opt/texlive/texdir/texmf-dist/fonts/type1/urw/h
 elvetic/uhvb8a.pfb></opt/texlive/texdir/texmf-dist/fonts/type1/urw/helvetic/uhv
 r8a.pfb></opt/texlive/texdir/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on cv_investigacion.pdf (2 pages, 585911 bytes).
+Output written on cv_investigacion.pdf (2 pages, 586080 bytes).
 PDF statistics:
  86 PDF objects out of 1000 (max. 8388607)
  68 compressed objects within 1 object stream
