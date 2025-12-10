@@ -52,35 +52,97 @@ formacion:
     fecha: "2013 - 2017"
     tags: ["investigacion"]
 
-  - titulo: "Quantum Computing y Ciberseguridad"
-    centro: "Universidad de Deusto"
-    fecha: "2025"
-    tags: ["programacion"]
-
-  - titulo: "Quantum Machine Learning y Optimización"
-    centro: "Universidad de Deusto"
-    fecha: "2025"
-    tags: ["programacion", "investigacion"]
-
+formacion_it:
   - titulo: "Google IT Automation with Python"
     centro: "IBM / Coursera"
-    fecha: "2025"
-    tags: ["programacion"]
+    fecha: "2025 (240h)"
+    tags: []
 
   - titulo: "Inteligencia Artificial"
     centro: "Escuela de Organización Industrial (EOI)"
-    fecha: "2025"
+    fecha: "2025 (462h)"
     tags: ["programacion", "investigacion"]
 
   - titulo: "Programación, Algoritmos y Estructuras para IA (Python)"
     centro: "EOI"
-    fecha: "2024"
+    fecha: "2024 (179h)"
     tags: ["programacion", "investigacion"]
 
   - titulo: "Cloud Computing y Power Platform"
     centro: "EOI"
-    fecha: "2024"
+    fecha: "2024 (509h)"
     tags: ["programacion"]
+
+cursos:
+  - titulo: "Quantum Computing y Ciberseguridad"
+    centro: "Universidad de Deusto"
+    fecha: "2025 (36h)"
+    tags: ["programacion"]
+
+  - titulo: "Quantum Machine Learning y Optimización"
+    centro: "Universidad de Deusto"
+    fecha: "2025 (36h)"
+    tags: ["programacion", "investigacion"]
+
+  - titulo: "Google AI Essentials"
+    centro: "Coursera"
+    fecha: "2025 (10h)"
+    tags: ["programacion", "investigacion"]
+
+  - titulo: "Terapia de Aceptación y Compromiso (ACT)"
+    centro: "Asoc. Esp. Psicología Sanitaria (AEPSIS)"
+    fecha: "2025 (20h)"
+    tags: ["psicologia", "atencion_cliente",]
+
+  - titulo: "Adicción a las tecnologías"
+    centro: "AEPSIS"
+    fecha: "2025 (20h)"
+    tags: ["psicologia", "atencion_cliente"]
+
+  - titulo: "Motivación en la empresa"
+    centro: "AEPSIS"
+    fecha: "2025 (20h)"
+    tags: ["psicologia", "atencion_cliente"]
+
+  - titulo: "Habilidades Sociales"
+    centro: "AEPSIS"
+    fecha: "2024 (20h)"
+    tags: ["atencion_cliente", "psicologia"]
+
+  - titulo: "Terapia Cognitiva"
+    centro: "AEPSIS"
+    fecha: "2024 (20h)"
+    tags: ["psicologia", "investigacion"]
+
+  - titulo: "Trastorno del Espectro Autista"
+    centro: "AEPSIS"
+    fecha: "2024 (50h)"
+    tags: ["psicologia", "investigacion"]
+
+  - titulo: "Inteligencia Emocional"
+    centro: "AEPSIS"
+    fecha: "2023 (20h)"
+    tags: ["atencion_cliente", "psicologia"]
+
+  - titulo: "Trastorno de Atención e Hiperactividad"
+    centro: "AEPSIS"
+    fecha: "2023 (50h)"
+    tags: ["psicologia", "investigacion"]
+
+  - titulo: "Psicología del Deporte"
+    centro: "AEPSIS"
+    fecha: "2023 (20h)"
+    tags: ["psicologia"]
+
+  - titulo: "Oratoria y Divulgación Científica"
+    centro: "Centro INDESS, UCA"
+    fecha: "2021 (25h)"
+    tags: ["investigacion"]
+
+  - titulo: "Formación 'Empleo con Apoyo'"
+    centro: "Asoc. Española de Empleo con Apoyo"
+    fecha: "2017 (15h)"
+    tags: ["atencion_cliente", "psicologia"]
 
 
 habilidades:

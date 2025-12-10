@@ -99,24 +99,24 @@ perfiles = {
 }
 
 for nombre_archivo, etiqueta_filtro in perfiles.items():
-    datos_render = data.copy() # Copia superficial (cuidado con listas anidadas)
+    datos_render = data.copy()
     
     if etiqueta_filtro:
-        # 1. Filtrar Experiencia
-        datos_render['experiencia'] = [
-            i for i in data['experiencia'] if etiqueta_filtro in i.get('tags', [])
-        ]
-        # 2. Filtrar Formación
-        datos_render['formacion'] = [
-            i for i in data['formacion'] if etiqueta_filtro in i.get('tags', []) or 'general' in i.get('tags', [])
-        ]
-        # 3. Filtrar Habilidades
-        datos_render['habilidades'] = [
-            i for i in data['habilidades'] if etiqueta_filtro in i.get('tags', []) or 'general' in i.get('tags', [])
-        ]
+        datos_render['experiencia'] = [i for i in data['experiencia'] if etiqueta_filtro in i.get('tags', [])]
+        
+        # Filtro FORMACIÓN ACADÉMICA
+        datos_render['formacion'] = [i for i in data['formacion'] if etiqueta_filtro in i.get('tags', []) or 'general' in i.get('tags', [])]
+        
+        # --- Filtro FORMACIÓN IT ---
+        datos_render['formacion_it'] = [i for i in data.get('formacion_it', []) if etiqueta_filtro in i.get('tags', []) or 'general' in i.get('tags', [])]
 
-    # Renderizar...
-    # Renderizamos la plantilla con los datos (filtrados o no)
+        # --- Filtro CURSOS ---
+        datos_render['cursos'] = [i for i in data.get('cursos', []) if etiqueta_filtro in i.get('tags', []) or 'general' in i.get('tags', [])]
+        
+        # Filtro HABILIDADES
+        datos_render['habilidades'] = [i for i in data['habilidades'] if etiqueta_filtro in i.get('tags', []) or 'general' in i.get('tags', [])]
+
+    # Renderizamos LaTeX
     latex_output = template_latex.render(datos_render)
     
     # Guardamos el archivo específico

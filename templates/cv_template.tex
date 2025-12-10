@@ -153,10 +153,10 @@
 \BLOCK{ endfor }
 
 % =============================================================================
-% FORMACIÓN
+% FORMACIÓN (ACADÉMICA)
 % =============================================================================
 \BLOCK{ if formacion }
-\section{Formación}
+\section{Formación Académica}
 \BLOCK{ for item in formacion }
     \noindent
     \begin{minipage}[t]{1.0\linewidth}
@@ -165,18 +165,52 @@
         {\small \VAR{item.fecha | escape_tex}} \\
         {\color{detailgray}\textit{\VAR{item.centro | escape_tex}}}
     \end{minipage}
-    \par % <--- ESTE ES EL TRUCO: Fuerza el salto de línea real
-    \vspace{0.2cm} % Espacio vertical entre items
+    \par 
+    \vspace{0.2cm} 
 \BLOCK{ endfor }
 \BLOCK{ endif }
 
 % =============================================================================
-% HABILIDADES (Estilo Side-by-Side o Lista compacta)
+% NUEVO: FORMACIÓN IT
+% =============================================================================
+\BLOCK{ if formacion_it }
+\section{Formación IT}
+\BLOCK{ for item in formacion_it }
+    \noindent
+    \begin{minipage}[t]{1.0\linewidth}
+        {\textbf{\VAR{item.titulo | escape_tex}}} 
+        \hfill 
+        {\small \VAR{item.fecha | escape_tex}} \\
+        {\color{detailgray}\textit{\VAR{item.centro | escape_tex}}}
+    \end{minipage}
+    \par 
+    \vspace{0.2cm} 
+\BLOCK{ endfor }
+\BLOCK{ endif }
+
+% =============================================================================
+% NUEVO: CURSOS
+% =============================================================================
+\BLOCK{ if cursos }
+\section{Cursos y Certificaciones}
+\BLOCK{ for item in cursos }
+    \noindent
+    \begin{minipage}[t]{1.0\linewidth}
+        {\textbf{\VAR{item.titulo | escape_tex}}} 
+        \hfill 
+        {\small \VAR{item.fecha | escape_tex}} \\
+        {\color{detailgray}\textit{\VAR{item.centro | escape_tex}}}
+    \end{minipage}
+    \par 
+    \vspace{0.2cm} 
+\BLOCK{ endfor }
+\BLOCK{ endif }
+
+% =============================================================================
+% HABILIDADES
 % =============================================================================
 \BLOCK{ if habilidades }
 \section{Habilidades}
-% Usamos itemize con 2 columnas si hay muchas, o simple si hay pocas.
-% Aquí usamos una lista inline separada por bullets para mantenerlo limpio.
 \noindent
 \BLOCK{ for item in habilidades }
     \textbf{\VAR{item.nombre | escape_tex}} 
